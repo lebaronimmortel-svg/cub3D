@@ -9,3 +9,6 @@
 /*   Updated: 2026/05/20 08:06:25 by lukrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+void	init_player(t_game *g);
+void	press_escp(int key, void *param);
