@@ -8,7 +8,10 @@ HEADER_DIR  = header
 MLX 		= ./MacroLibX/libmlx.so
 
 # --- Files ---
-SRC         = srcs/main/main.c \
+SRC         =	srcs/main/main.c srcs/main/init.c \
+				srcs/parser/parser.c \
+				srcs/raycasting/raycasting.c \
+				srcs/utils/utils.c \
 
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)
