@@ -11,4 +11,12 @@
 /* ************************************************************************** */
 
 void	init_player(t_game *g);
+void	init_windows_mlx(t_game *g);
+void	init_events(t_game *g);
+void	init_game(void *ptr);
+
 void	press_escp(int key, void *param);
+void	press_cross(int event, void *param);
+
+void	ray_pos_dir(t_game *g);
+void	grid(t_game *g);

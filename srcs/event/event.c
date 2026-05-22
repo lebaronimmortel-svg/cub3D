@@ -17,3 +17,9 @@ void	press_escp(int key, void *param)
 	if (key == 41)
 		mlx_loop_end((mlx_context)param);
 }
+
+void	press_cross(int event, void *param)
+{
+	if (event == 0)
+		mlx_loop_end((mlx_context)param);
+}
