@@ -12,10 +12,12 @@
 
 #include "../../header/header.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game	g;
 
+	if (!main_parser(argc, argv))
+		return (1);
 	init_player(&g);
 	init_windows_mlx(&g);
 	init_events(&g);

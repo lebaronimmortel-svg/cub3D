@@ -30,15 +30,15 @@ void	grid(t_game *g)
 {
 	int		mapx;
 	int		mapy;
-	double	sidedistx;
-	double	sidedisty;
+	//double	sidedistx;
+	//double	sidedisty;
 	double	deltadistx;
 	double	deltadisty;
-	double	perpwalldist;
-	int		stepx;
-	int		stepy;
+	//double	perpwalldist;
+	//int		stepx;
+	//int		stepy;
 	int		hit;
-	int		side;
+	//int		side;
 
 	mapx = (int)g->player.pos_x;
 	mapy = (int)g->player.pos_y;
