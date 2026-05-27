@@ -46,16 +46,14 @@ static int	is_valid_middle_line(char *str, int *ind_P)
 	{
 		if (!is_valid_square(str[i]))
 			return (0);
-		if (str[i] == 'W' || str[i] == 'N' 
+		if (str[i] == 'W' || str[i] == 'N'
 			|| str[i] == 'S' || str[i] == 'E')
 			(*ind_P)++;
-
 		i++;
 	}
 	if (str[i] == '\0' && str[i - 1] == '1')
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
 static int	is_valid_line(char **map, int i, int *p_cnt)
@@ -80,13 +78,13 @@ int	error_check2(int fd, char *str2, int *error)
 		if (str2)
 			free(str2);
 		if (fd >= 0)
-			close (fd);
+			close(fd);
 		return (0);
 	}
 	return (1);
 }
 
-int	item_count(char **map, int *error)
+int	item_count(char **map, int *error, int *start, t_map *tm)
 {
 	int	i;
 	int	cnt;
@@ -95,8 +93,9 @@ int	item_count(char **map, int *error)
 		return (0);
 	i = 0;
 	cnt = 0;
-	if (!check_infos(map, &i))
+	if (!check_infos(map, &i, tm))
 		return (0);
+	*start = i;
 	if (!is_suround_diff(&map[i]))
 		return (0);
 	while (map[i])

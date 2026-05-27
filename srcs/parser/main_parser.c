@@ -12,21 +12,30 @@
 
 #include "../../header/header.h"
 
-int	main_parser(int argc, char **argv)
+int	main_parser(int argc, char **argv, t_game *g)
 {
-	char	**map;
-	int		error;
+	int	error;
+	int	i;
 
+	g->map.grid_map = NULL;
+	g->map.NO = NULL;
+	g->map.SO = NULL;
+	g->map.WE = NULL;
+	g->map.EA = NULL;
+	g->map.floor = (t_color){0, 0, 0};
+	g->map.ceiling = (t_color){0, 0, 0};
+	i = 0;
+	while (i < 6)
+		g->keys[i++] = 0;
 	error = 0;
 	if (argc != 2)
 		return (0);
-	map = create_map(argv[1], &error);
-	if (!map)
+	g->map.grid_map = create_map(argv[1], &error, &g->map);
+	if (!g->map.grid_map)
 	{
 		ft_putstr_fd("MAP NOT OK !\n", 1);
 		return (0);
 	}
-	free_map(map);
 	ft_putstr_fd("MAP OK !\n", 1);
 	return (1);
 }

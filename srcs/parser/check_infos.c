@@ -12,87 +12,91 @@
 
 #include "../../header/header.h"
 
-static int is_whitespace_line(char *line)
+static int	is_whitespace_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])
 	{
 		if (!(line[i] > 8 && line[i] < 14) || line[i] == 32)
-		    return (0);
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-static int has_hole(char *str)
+static int	has_hole(char *str)
 {
-	int i;
-	int flag;
+	int	i;
+	int	flag;
 
 	i = 0;
 	flag = 0;
 	while (str[i])
 	{
 		if ((str[i] > 8 && str[i] < 14) || str[i] == 32)
-		    flag = 1;
+			flag = 1;
 		else
 		{
-		    if (flag == 1)
-		        return (1);
+			if (flag == 1)
+				return (1);
 		}
 		i++;
 	}
 	return (0);
 }
 
-static int is_texture_text(char **map, int *i)
+static int	is_texture_text(char **map, int *i, t_map *tm)
 {
-	int no;
-	int so;
-	int we;
-	int ea;
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
 
 	no = 0;
 	so = 0;
 	we = 0;
 	ea = 0;
-	while (map[*i] && (!is_whitespace_line(map[*i])))
+	while (map[*i] && !is_whitespace_line(map[*i]))
 	{
-		if (!ft_strncmp(map[*i], "NO ./", 4) && !has_hole(&map[*i][4]))
+		if (!ft_strncmp(map[*i], "NO ./", 5) && !has_hole(&map[*i][4]))
 		{
-		    no += 1;
-		    (*i)++;
+			no++;
+			tm->NO = ft_strjoin("", &map[*i][3]);
+			(*i)++;
 		}
-		else if (!ft_strncmp(map[*i], "SO ./", 4) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(map[*i], "SO ./", 5) && !has_hole(&map[*i][4]))
 		{
-		    so += 1;
-		    (*i)++;
+			so++;
+			tm->SO = ft_strjoin("", &map[*i][3]);
+			(*i)++;
 		}
-		else if (!ft_strncmp(map[*i], "WE ./", 4) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(map[*i], "WE ./", 5) && !has_hole(&map[*i][4]))
 		{
-		    we += 1;
-		    (*i)++;
+			we++;
+			tm->WE = ft_strjoin("", &map[*i][3]);
+			(*i)++;
 		}
-		else if (!ft_strncmp(map[*i], "EA ./", 4) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(map[*i], "EA ./", 5) && !has_hole(&map[*i][4]))
 		{
-		    ea += 1;
-		    (*i)++;
+			ea++;
+			tm->EA = ft_strjoin("", &map[*i][3]);
+			(*i)++;
 		}
 		else
-		    break ;
+			break ;
 	}
 	if (no != 1 || so != 1 || we != 1 || ea != 1)
 		return (0);
 	return (1);
 }
 
-static int is_ok_format(char *str)
+static int	is_ok_format(char *str)
 {
-	int i;
-	int value;
-	int cpt;
+	int	i;
+	int	value;
+	int	cpt;
 
 	i = 0;
 	cpt = 0;
@@ -100,21 +104,21 @@ static int is_ok_format(char *str)
 	{
 		value = ft_atoi(&str[i]);
 		if (value < 0 || value > 255)
-		    return (0);
-		else   
-		    cpt += 1;
+			return (0);
+		else
+			cpt += 1;
 		while (ft_isdigit(str[i]))
-		    i++;
+			i++;
 		if (!str[i])
-		    break ;
+			break ;
 		else if (str[i] == ',' && ft_isdigit(str[i + 1]))
-		    i++;
+			i++;
 		else if (!ft_isdigit(str[i]))
 		{
-		    if (is_whitespace_line(&str[i]))
-		        break ;
-		    else
-		        return (0);
+			if (is_whitespace_line(&str[i]))
+				break ;
+			else
+				return (0);
 		}
 	}
 	if (cpt != 3)
@@ -122,63 +126,80 @@ static int is_ok_format(char *str)
 	return (1);
 }
 
-static int is_color_text(char **map, int *i)
+static t_color	parse_rgb(char *str)
 {
-	int c;
-	int f;
+	t_color	c;
+
+	c.r = ft_atoi(str);
+	while (*str && *str != ',')
+		str++;
+	if (*str)
+		str++;
+	c.g = ft_atoi(str);
+	while (*str && *str != ',')
+		str++;
+	if (*str)
+		str++;
+	c.b = ft_atoi(str);
+	return (c);
+}
+
+static int	is_color_text(char **map, int *i, t_map *tm)
+{
+	int	c;
+	int	f;
 
 	c = 0;
 	f = 0;
-	while (map[*i] && (!is_whitespace_line(map[*i])))
+	while (map[*i] && !is_whitespace_line(map[*i]))
 	{
 		if (!ft_strncmp(map[*i], "C ", 1) && is_ok_format(&map[*i][2]))
 		{
-		    c += 1;
-		    (*i)++;
+			c++;
+			tm->ceiling = parse_rgb(&map[*i][2]);
+			(*i)++;
 		}
 		else if (!ft_strncmp(map[*i], "F ", 1) && is_ok_format(&map[*i][2]))
 		{
-		    f += 1;
-		    (*i)++;
+			f++;
+			tm->floor = parse_rgb(&map[*i][2]);
+			(*i)++;
 		}
 		else
-		    break ;
+			break ;
 	}
 	if (c != 1 || f != 1)
 		return (0);
 	return (1);
 }
 
-int     check_infos(char **map, int *i)
+int	check_infos(char **map, int *i, t_map *tm)
 {
 	while (map[*i] && is_whitespace_line(map[*i]))
 		(*i)++;
-	if (is_color_text(map, i))
+	if (is_color_text(map, i, tm))
 	{
 		while (map[*i] && is_whitespace_line(map[*i]))
-		    (*i)++;
-		if (is_texture_text(map, i))
+			(*i)++;
+		if (is_texture_text(map, i, tm))
 		{
-		    while (map[*i] && is_whitespace_line(map[*i]))
-		        (*i)++;
-		    return (1);
+			while (map[*i] && is_whitespace_line(map[*i]))
+				(*i)++;
+			return (1);
 		}
-		else
-		    return (0);
-	}
-	else if (is_texture_text(map, i))
-	{
-		while (map[*i] && is_whitespace_line(map[*i]))
-		    (*i)++;
-		if (is_color_text(map, i))
-		{
-		    while (map[*i] && is_whitespace_line(map[*i]))
-		        (*i)++;
-		    return (1);
-		}
-		else
-		    return (0);
-	}
-	else
 		return (0);
+	}
+	else if (is_texture_text(map, i, tm))
+	{
+		while (map[*i] && is_whitespace_line(map[*i]))
+			(*i)++;
+		if (is_color_text(map, i, tm))
+		{
+			while (map[*i] && is_whitespace_line(map[*i]))
+				(*i)++;
+			return (1);
+		}
+		return (0);
+	}
+	return (0);
 }

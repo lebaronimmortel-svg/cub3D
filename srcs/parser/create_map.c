@@ -53,20 +53,54 @@ static char	**read_from_file(char *filename, int *error)
 	return (map);
 }
 
-char	**create_map(char *filename, int *error)
+static char	**trim_map_header(char **map, int start)
+{
+	int		i;
+	int		new_len;
+	char	**new_map;
+
+	i = 0;
+	while (i < start)
+	{
+		free(map[i]);
+		i++;
+	}
+	new_len = 0;
+	while (map[start + new_len])
+		new_len++;
+	new_map = malloc(sizeof(char *) * (new_len + 1));
+	if (!new_map)
+		return (NULL);
+	i = 0;
+	while (i < new_len)
+	{
+		new_map[i] = map[start + i];
+		i++;
+	}
+	new_map[i] = NULL;
+	free(map);
+	return (new_map);
+}
+
+char	**create_map(char *filename, int *error, t_map *tm)
 {
 	char	**map;
+	int		start;
 
+	start = 0;
 	map = read_from_file(filename, error);
 	if (!map)
 		return (NULL);
-	if (!item_count(map, error))
+	if (!item_count(map, error, &start, tm))
 	{
 		if (*error == 0 || *error == 6 || *error == 7)
 			*error = 4;
 		free_map(map);
 		return (NULL);
 	}
+	map = trim_map_header(map, start);
+	if (!map)
+		return (NULL);
 	if (*error == 0)
 		return (map);
 	free_map(map);
