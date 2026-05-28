@@ -163,6 +163,11 @@ void	draw_scene(t_game *g)
 		mlx_destroy_image(g->mlx, g->img);
 	g->img = NULL;
 	g->img = mlx_new_image(g->mlx, g->info.width, g->info.height);
+	if (!g->img)
+	{
+		mlx_loop_end(g->mlx);
+		return ;
+	}
 	draw_floor_ceiling(g);
 	x = 0;
 	while (x < g->info.width)
@@ -175,16 +180,17 @@ void	draw_scene(t_game *g)
 
 void	update_move(t_game *g, double ft)
 {
-	const double	ms = ft * 3.0;
-	const double	rs = ft * 2.0;
-	double			old_dir_x;
-	double			old_plane_x;
-	double			nx;
-	double			ny;
+	double	ms;
+	double	rs;
+	double	old_dir_x;
+	double	old_plane_x;
+	double	nx;
+	double	ny;
 
+	ms = ft * 3.0;
+	rs = ft * 2.0;
 	if (g->keys[0])
 	{
-		printf("FORWARD\n");
 		nx = g->player.pos_x + g->player.dir_x * ms;
 		ny = g->player.pos_y + g->player.dir_y * ms;
 		if (!is_wall(g, (int)nx, (int)g->player.pos_y))
@@ -194,7 +200,6 @@ void	update_move(t_game *g, double ft)
 	}
 	if (g->keys[1])
 	{
-		printf("BACKWARD\n");
 		nx = g->player.pos_x - g->player.dir_x * ms;
 		ny = g->player.pos_y - g->player.dir_y * ms;
 		if (!is_wall(g, (int)nx, (int)g->player.pos_y))
@@ -204,7 +209,6 @@ void	update_move(t_game *g, double ft)
 	}
 	if (g->keys[3])
 	{
-		printf("RIGHT\n");
 		old_dir_x = g->player.dir_x;
 		g->player.dir_x = g->player.dir_x * cos(rs) - g->player.dir_y * sin(rs);
 		g->player.dir_y = old_dir_x * sin(rs) + g->player.dir_y * cos(rs);
@@ -216,7 +220,6 @@ void	update_move(t_game *g, double ft)
 	}
 	if (g->keys[2])
 	{
-		printf("LEFT\n");
 		old_dir_x = g->player.dir_x;
 		g->player.dir_x = g->player.dir_x * cos(-rs) - g->player.dir_y * sin(-rs);
 		g->player.dir_y = old_dir_x * sin(-rs) + g->player.dir_y * cos(-rs);
