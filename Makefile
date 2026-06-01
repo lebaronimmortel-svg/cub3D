@@ -17,6 +17,7 @@ SRC         =	srcs/main/main.c \
 				srcs/parser/main_utils.c \
 				srcs/parser/main_parser.c \
 				srcs/parser/create_map.c \
+				srcs/parser/my_ft_split.c \
 				srcs/parser/check_infos.c \
 				srcs/raycasting/raycasting.c \
 				srcs/utils/utils.c \

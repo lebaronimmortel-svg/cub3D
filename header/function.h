@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 /* ---------- parser / utils ---------- */
+char	**my_ft_split(char const *s, char c);
 int     my_space_strlen(char *str);
 void	free_map(char **map);
 int     is_space(char *str);
