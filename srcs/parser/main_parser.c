@@ -45,7 +45,7 @@ int	main_parser(int argc, char **argv, t_game *g)
 	i = 0;
 	while (i < 6)
 		g->keys[i++] = 0;
-	error = 0;
+	error = 7;
 	if (argc != 2)
 	{		
 		ft_putstr_fd("ERROR : ", 1);

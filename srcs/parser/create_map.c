@@ -99,7 +99,7 @@ char	**create_map(char *filename, int *error, t_map *tm)
 	map = trim_map_header(map, start);
 	if (!map)
 		return (NULL);
-	if (*error == 0)
+	if (*error == 7)
 		return (map);
 	free_map(map);
 	return (NULL);
