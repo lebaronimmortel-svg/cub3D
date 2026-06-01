@@ -30,11 +30,8 @@ static void	put_error_msg(int error)
 		ft_putstr_fd("INVALID INFO SYNTAX\n", 1);
 }
 
-int	main_parser(int argc, char **argv, t_game *g)
+static void	game_init_fields(t_game *g)
 {
-	int	error;
-	int	i;
-
 	g->map.grid_map = NULL;
 	g->map.NO = NULL;
 	g->map.SO = NULL;
@@ -48,6 +45,14 @@ int	main_parser(int argc, char **argv, t_game *g)
 	g->map.tex[3] = NULL;
 	g->map.tex_w = 0;
 	g->map.tex_h = 0;
+}
+
+int	main_parser(int argc, char **argv, t_game *g)
+{
+	int	error;
+	int	i;
+
+	game_init_fields(g);
 	i = 0;
 	while (i < 6)
 		g->keys[i++] = 0;
