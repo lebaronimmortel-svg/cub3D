@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 /* ---------- parser / utils ---------- */
-int     my_space_strlen(char *str);
+int		my_space_strlen(char *str);
 void	free_map(char **map);
-int     is_space(char *str);
+int		is_space(char *str);
 int		my_memlen(char **map);
 int		is_suround_diff(char **map);
 int		is_valid_name(char *filename);
@@ -50,3 +50,6 @@ void	update_move(t_game *g, double ft);
 void	free_game(t_game *g);
 void	end_game(t_game *g);
 void	close_img(int one, int two, int three, int four);
+
+/* ---------- utils ---------- */
+void	init_player_at(t_game *g, int x, int y, char c);

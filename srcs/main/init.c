@@ -23,42 +23,11 @@ void	init_player(t_game *g)
 		x = 0;
 		while (g->map.grid_map[y][x])
 		{
-			if (g->map.grid_map[y][x] == 'N' || g->map.grid_map[y][x] == 'S'
+			if (g->map.grid_map[y][x] == 'N'
+				|| g->map.grid_map[y][x] == 'S'
 				|| g->map.grid_map[y][x] == 'E'
 				|| g->map.grid_map[y][x] == 'W')
-			{
-				g->player.pos_x = x + 0.5;
-				g->player.pos_y = y + 0.5;
-				if (g->map.grid_map[y][x] == 'N')
-				{
-					g->player.dir_x = 0.0;
-					g->player.dir_y = -1.0;
-					g->player.plane_x = 0.66;
-					g->player.plane_y = 0.0;
-				}
-				else if (g->map.grid_map[y][x] == 'S')
-				{
-					g->player.dir_x = 0.0;
-					g->player.dir_y = 1.0;
-					g->player.plane_x = -0.66;
-					g->player.plane_y = 0.0;
-				}
-				else if (g->map.grid_map[y][x] == 'E')
-				{
-					g->player.dir_x = 1.0;
-					g->player.dir_y = 0.0;
-					g->player.plane_x = 0.0;
-					g->player.plane_y = 0.66;
-				}
-				else
-				{
-					g->player.dir_x = -1.0;
-					g->player.dir_y = 0.0;
-					g->player.plane_x = 0.0;
-					g->player.plane_y = -0.66;
-				}
-				g->map.grid_map[y][x] = '0';
-			}
+				init_player_at(g, x, y, g->map.grid_map[y][x]);
 			x++;
 		}
 		y++;
@@ -70,8 +39,8 @@ void	init_windows_mlx(t_game *g)
 	g->mlx = mlx_init();
 	g->info = (mlx_window_create_info){0};
 	g->info.title = "cub3D";
-	g->info.width = 640;
-	g->info.height = 480;
+	g->info.width = 1080;
+	g->info.height = 720;
 	g->win = mlx_new_window(g->mlx, &g->info);
 	g->img = mlx_new_image(g->mlx, g->info.width, g->info.height);
 }
@@ -90,10 +59,10 @@ int	init_img(t_game *g)
 	int	w;
 	int	h;
 
-	g->map.tex[0] = mlx_new_image_from_file(g->mlx, g->map.NO, &w, &h);
-	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.SO, &w, &h);
-	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.WE, &w, &h);
-	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.EA, &w, &h);
+	g->map.tex[0] = mlx_new_image_from_file(g->mlx, g->map.no, &w, &h);
+	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.so, &w, &h);
+	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.we, &w, &h);
+	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.ea, &w, &h);
 	g->map.tex_w = w;
 	g->map.tex_h = h;
 	if (!g->map.tex[0] || !g->map.tex[1] || !g->map.tex[2] || !g->map.tex[3])
