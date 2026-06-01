@@ -36,10 +36,10 @@ typedef struct s_player
 typedef struct s_map
 {
 	char		**grid_map;
-	char		*NO;
-	char		*SO;
-	char		*WE;
-	char		*EA;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
 	t_color		floor;
 	t_color		ceiling;
 	mlx_image	tex[4];
@@ -47,14 +47,6 @@ typedef struct s_map
 	int			tex_h;
 }	t_map;
 
-/*
-** keys[0] = W      (move forward)
-** keys[1] = S      (move backward)
-** keys[2] = A      (rotate left)
-** keys[3] = D      (rotate right)
-** keys[4] = LEFT   (rotate left,  arrow)
-** keys[5] = RIGHT  (rotate right, arrow)
-*/
 typedef struct s_game
 {
 	mlx_context				mlx;

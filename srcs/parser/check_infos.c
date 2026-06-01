@@ -63,25 +63,25 @@ static int	is_texture_text(char **map, int *i, t_map *tm)
 		if (!ft_strncmp(map[*i], "NO ./", 5) && !has_hole(&map[*i][4]))
 		{
 			no++;
-			tm->NO = ft_strjoin("", &map[*i][3]);
+			tm->no = ft_strjoin("", &map[*i][3]);
 			(*i)++;
 		}
 		else if (!ft_strncmp(map[*i], "SO ./", 5) && !has_hole(&map[*i][4]))
 		{
 			so++;
-			tm->SO = ft_strjoin("", &map[*i][3]);
+			tm->so = ft_strjoin("", &map[*i][3]);
 			(*i)++;
 		}
 		else if (!ft_strncmp(map[*i], "WE ./", 5) && !has_hole(&map[*i][4]))
 		{
 			we++;
-			tm->WE = ft_strjoin("", &map[*i][3]);
+			tm->we = ft_strjoin("", &map[*i][3]);
 			(*i)++;
 		}
 		else if (!ft_strncmp(map[*i], "EA ./", 5) && !has_hole(&map[*i][4]))
 		{
 			ea++;
-			tm->EA = ft_strjoin("", &map[*i][3]);
+			tm->ea = ft_strjoin("", &map[*i][3]);
 			(*i)++;
 		}
 		else

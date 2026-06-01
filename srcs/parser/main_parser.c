@@ -38,10 +38,10 @@ int	main_parser(int argc, char **argv, t_game *g)
 	int	i;
 
 	g->map.grid_map = NULL;
-	g->map.NO = NULL;
-	g->map.SO = NULL;
-	g->map.WE = NULL;
-	g->map.EA = NULL;
+	g->map.no = NULL;
+	g->map.so = NULL;
+	g->map.we = NULL;
+	g->map.ea = NULL;
 	g->map.floor = (t_color){0, 0, 0};
 	g->map.ceiling = (t_color){0, 0, 0};
 	g->map.tex[0] = NULL;
