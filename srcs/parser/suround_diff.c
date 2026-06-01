@@ -22,7 +22,7 @@ int my_space_strlen(char *str)
     len = 0;
     while (str[len])
     {
-        if ((str[len] == ' ' || str[len] == 9) && is_space(&str[len]))
+        if ((str[len] == ' ') && is_space(&str[len]))
             return (len - 1);
         len++;
     }
@@ -42,7 +42,7 @@ int is_suround_diff(char **map)
             j = 0;
             while (map[i - 1][j])
                 j++;
-            while (map[i - 1][j] && (map[i - 1][j] != ' ' && map[i - 1][j] != 9))
+            while (map[i - 1][j] && (map[i - 1][j] != ' '))
             {
                 if (map[i][j] != '1')
                     return (0);
@@ -54,7 +54,7 @@ int is_suround_diff(char **map)
             j = 0;
             while (map[i][j])
                 j++;
-            while (map[i][j] && (map[i][j] != ' ' && map[i][j] != 9))
+            while (map[i][j] && (map[i][j] != ' '))
             {
                 if (map[i - 1][j] != '1')
                     return (0);

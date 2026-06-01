@@ -45,9 +45,9 @@ int	is_valid_border_line(char *str, int *error, char *pre_str)
 		}
 		if (str[i] == '1' && is_space(&str[i + 1]))
 		{
-			if (i > 0 && (str[i - 1] == ' ' || str[i - 1] == 9))
+			if (i > 0 && (str[i - 1] == ' '))
 			{
-				if (my_space_strlen(str) > my_space_strlen(pre_str) || pre_str[i] == ' ' || pre_str[i] == 9)
+				if (my_space_strlen(str) > my_space_strlen(pre_str) || pre_str[i] == ' ' || pre_str[i])
 				{
 					*error = 8;
 					return (0);
