@@ -12,6 +12,37 @@
 
 #include "../../header/header.h"
 
+void	free_map(char **map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+int	my_strchr(char *str, char c)
+{
+	size_t	i;
+
+	if (!str)
+		return (-1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	add_tail(char **str0, char **str1, char **str2)
 {
 	*str1 = *str2;
@@ -23,32 +54,6 @@ int	add_tail(char **str0, char **str1, char **str2)
 	return (1);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t			i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	size_t	i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
-
 int	my_memlen(char **map)
 {
 	int	i;
@@ -57,33 +62,4 @@ int	my_memlen(char **map)
 	while (map[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strjoin(char const	*str1, char const	*str2)
-{
-	size_t				i;
-	size_t				j;
-	size_t				cnt;
-	char				*tab;
-
-	if (!str1 || !str2)
-		return (NULL);
-	i = 0;
-	j = 0;
-	cnt = ft_strlen(str1) + ft_strlen(str2);
-	tab = (char *) malloc ((cnt + 1) * sizeof(char));
-	if (!tab)
-		return (NULL);
-	while (str1[i] != '\0')
-	{
-		tab[i] = str1[i];
-		i++;
-	}
-	while (str2[j] != '\0')
-	{
-		tab[i + j] = str2[j];
-		j++;
-	}
-	tab[i + j] = '\0';
-	return (tab);
 }

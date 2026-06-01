@@ -14,7 +14,6 @@ SRC         =	srcs/main/main.c \
 				srcs/parser/utils.c \
 				srcs/parser/parser_utils.c \
 				srcs/parser/suround_diff.c \
-				srcs/parser/main_utils.c \
 				srcs/parser/main_parser.c \
 				srcs/parser/create_map.c \
 				srcs/parser/my_ft_split.c \
