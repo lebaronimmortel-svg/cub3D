@@ -28,6 +28,8 @@ static void	put_error_msg(int error)
 		ft_putstr_fd("UNCLOSED MAP\n", 1);
 	if (error == 6)
 		ft_putstr_fd("INVALID INFO SYNTAX\n", 1);
+	if (error == 8)
+		ft_putstr_fd("UNABLE TO OPEN FILE\n", 1);
 }
 
 static void	struct_init(t_game *g)

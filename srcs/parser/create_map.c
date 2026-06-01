@@ -20,7 +20,7 @@ static int	file_error_check(char *filename, int *error)
 		*error = 3;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		*error = 3;
+		*error = 8;
 	return (fd);
 }
 
