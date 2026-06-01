@@ -87,18 +87,17 @@ void	init_events(t_game *g)
 
 int	init_img(t_game *g)
 {
-	int	one;
-	int	two;
-	int	three;
-	int	four;
-;
-	one = open(g->map.EA, O_RDONLY);
-	two = open(g->map.NO, O_RDONLY);
-	three = open(g->map.WE, O_RDONLY);
-	four = open(g->map.SO, O_RDONLY);
-	if (one == -1 || two == -1 || three == -1 || four == -1)
+	int	w;
+	int	h;
+
+	g->map.tex[0] = mlx_new_image_from_file(g->mlx, g->map.NO, &w, &h);
+	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.SO, &w, &h);
+	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.WE, &w, &h);
+	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.EA, &w, &h);
+	g->map.tex_w = w;
+	g->map.tex_h = h;
+	if (!g->map.tex[0] || !g->map.tex[1] || !g->map.tex[2] || !g->map.tex[3])
 	{
-		close_img(one, two, three, four);
 		printf("Error in the image files\n");
 		if (g->img)
 			mlx_destroy_image(g->mlx, g->img);
@@ -106,7 +105,6 @@ int	init_img(t_game *g)
 		end_game(g);
 		exit(1);
 	}
-	close_img(one, two, three, four);
 	return (1);
 }
 

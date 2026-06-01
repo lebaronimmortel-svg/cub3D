@@ -25,7 +25,9 @@ static mlx_color	rgb(int r, int g, int b)
 
 static int	is_wall(t_game *g, int wx, int wy)
 {
-	if (!g->map.grid_map[wy] || !g->map.grid_map[wy][wx])
+	if (wy < 0 || wx < 0 || !g->map.grid_map[wy])
+		return (1);
+	if (!g->map.grid_map[wy][wx])
 		return (1);
 	return (g->map.grid_map[wy][wx] != '0');
 }
@@ -34,8 +36,8 @@ void	draw_floor_ceiling(t_game *g)
 {
 	mlx_color	ceil_c;
 	mlx_color	floor_c;
-	int				x;
-	int				y;
+	int			x;
+	int			y;
 
 	ceil_c = rgb(g->map.ceiling.r, g->map.ceiling.g, g->map.ceiling.b);
 	floor_c = rgb(g->map.floor.r, g->map.floor.g, g->map.floor.b);
@@ -55,27 +57,50 @@ void	draw_floor_ceiling(t_game *g)
 	}
 }
 
+static int pick_tex(int side, int step_x, int step_y)
+{
+    if (side == 0)
+    {
+        if (step_x > 0)
+            return 3;
+        else
+            return 2;
+    }
+    else
+    {
+        if (step_y > 0)
+            return 1;
+        else
+            return 0;
+    }
+}
+
 void	cast_ray(t_game *g, int x)
 {
-	double			cam_x;
-	double			rdir_x;
-	double			rdir_y;
-	int				map_x;
-	int				map_y;
-	double			sdist_x;
-	double			sdist_y;
-	double			ddist_x;
-	double			ddist_y;
-	double			perp;
-	int				step_x;
-	int				step_y;
-	int				hit;
-	int				side;
-	int				lh;
-	int				ds;
-	int				de;
-	mlx_color		color;
-	int				py;
+	double		cam_x;
+	double		rdir_x;
+	double		rdir_y;
+	int			map_x;
+	int			map_y;
+	double		sdist_x;
+	double		sdist_y;
+	double		ddist_x;
+	double		ddist_y;
+	double		perp;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			lh;
+	int			ds;
+	int			de;
+	double		wall_x;
+	int			tex_x;
+	int			tex_y;
+	double		tex_step;
+	double		tex_pos;
+	mlx_color	color;
+	int			py;
 
 	cam_x = 2.0 * x / (double)g->info.width - 1.0;
 	rdir_x = g->player.dir_x + g->player.plane_x * cam_x;
@@ -87,7 +112,6 @@ void	cast_ray(t_game *g, int x)
 	} else {
 		ddist_x = fabs(1.0 / rdir_x);
 	}
-
 	if (rdir_y == 0.0) {
 		ddist_y = 1e30;
 	} else {
@@ -144,12 +168,35 @@ void	cast_ray(t_game *g, int x)
 	if (de >= g->info.height)
 		de = g->info.height - 1;
 	if (side == 0)
-		color = rgb(200, 200, 200);
+		wall_x = g->player.pos_y + perp * rdir_y;
 	else
-		color = rgb(48, 29, 29);
+		wall_x = g->player.pos_x + perp * rdir_x;
+	wall_x -= floor(wall_x);
+	tex_x = (int)(wall_x * (double)g->map.tex_w);
+	if (side == 0 && rdir_x > 0)
+		tex_x = g->map.tex_w - tex_x - 1;
+	if (side == 1 && rdir_y < 0)
+		tex_x = g->map.tex_w - tex_x - 1;
+	tex_step = (double)g->map.tex_h / (double)lh;
+	tex_pos = ((double)ds - (double)g->info.height / 2.0
+			+ (double)lh / 2.0) * tex_step;
 	py = ds;
 	while (py <= de)
 	{
+		tex_y = (int)tex_pos;
+		if (tex_y < 0)
+			tex_y = 0;
+		if (tex_y >= g->map.tex_h)
+			tex_y = g->map.tex_h - 1;
+		tex_pos += tex_step;
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[pick_tex(side, step_x, step_y)], tex_x, tex_y);
+		if (side == 1)
+		{
+			color.r >>= 1;
+			color.g >>= 1;
+			color.b >>= 1;
+		}
 		mlx_set_image_pixel(g->mlx, g->img, x, py, color);
 		py++;
 	}
@@ -213,10 +260,8 @@ void	update_move(t_game *g, double ft)
 		g->player.dir_x = g->player.dir_x * cos(rs) - g->player.dir_y * sin(rs);
 		g->player.dir_y = old_dir_x * sin(rs) + g->player.dir_y * cos(rs);
 		old_plane_x = g->player.plane_x;
-		g->player.plane_x = g->player.plane_x * cos(rs)
-		- g->player.plane_y * sin(rs);
-		g->player.plane_y = old_plane_x * sin(rs)
-		+ g->player.plane_y * cos(rs);
+		g->player.plane_x = g->player.plane_x * cos(rs) - g->player.plane_y * sin(rs);
+		g->player.plane_y = old_plane_x * sin(rs) + g->player.plane_y * cos(rs);
 	}
 	if (g->keys[2])
 	{
@@ -224,9 +269,7 @@ void	update_move(t_game *g, double ft)
 		g->player.dir_x = g->player.dir_x * cos(-rs) - g->player.dir_y * sin(-rs);
 		g->player.dir_y = old_dir_x * sin(-rs) + g->player.dir_y * cos(-rs);
 		old_plane_x = g->player.plane_x;
-		g->player.plane_x = g->player.plane_x * cos(-rs)
-			- g->player.plane_y * sin(-rs);
-		g->player.plane_y = old_plane_x * sin(-rs)
-			+ g->player.plane_y * cos(-rs);
+		g->player.plane_x = g->player.plane_x * cos(-rs) - g->player.plane_y * sin(-rs);
+		g->player.plane_y = old_plane_x * sin(-rs) + g->player.plane_y * cos(-rs);
 	}
 }

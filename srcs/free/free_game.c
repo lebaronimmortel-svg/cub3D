@@ -14,6 +14,16 @@
 
 void	end_game(t_game *g)
 {
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (g->map.tex[i])
+			mlx_destroy_image(g->mlx, g->map.tex[i]);
+		g->map.tex[i] = NULL;
+		i++;
+	}
 	mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_context(g->mlx);
 	free_game(g);

@@ -42,14 +42,20 @@ int	main_parser(int argc, char **argv, t_game *g)
 	g->map.EA = NULL;
 	g->map.floor = (t_color){0, 0, 0};
 	g->map.ceiling = (t_color){0, 0, 0};
+	g->map.tex[0] = NULL;
+	g->map.tex[1] = NULL;
+	g->map.tex[2] = NULL;
+	g->map.tex[3] = NULL;
+	g->map.tex_w = 0;
+	g->map.tex_h = 0;
 	i = 0;
 	while (i < 6)
 		g->keys[i++] = 0;
 	error = 7;
 	if (argc != 2)
-	{		
+	{
 		ft_putstr_fd("ERROR : ", 1);
-		put_error_msg(2);	
+		put_error_msg(2);
 		return (0);
 	}
 	g->map.grid_map = create_map(argv[1], &error, &g->map);

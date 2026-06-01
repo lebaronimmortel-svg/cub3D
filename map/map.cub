@@ -3,8 +3,8 @@ SO ./map/two.png
 WE ./map/three.png
 EA ./map/four.png
 
-F 220,100,7
-C 225,40,48
+F 51,47,18
+C 51,47,18
 
 111111111111111                                  
 10101111110101        

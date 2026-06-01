@@ -35,13 +35,16 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char	**grid_map;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	t_color	floor;
-	t_color	ceiling;
+	char		**grid_map;
+	char		*NO;
+	char		*SO;
+	char		*WE;
+	char		*EA;
+	t_color		floor;
+	t_color		ceiling;
+	mlx_image	tex[4];
+	int			tex_w;
+	int			tex_h;
 }	t_map;
 
 /*
