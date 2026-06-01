@@ -33,14 +33,14 @@ void	free_game(t_game *g)
 {
 	if (g->map.grid_map)
 		free_map(g->map.grid_map);
-	if (g->map.no)
-		free(g->map.no);
-	if (g->map.so)
-		free(g->map.so);
-	if (g->map.we)
-		free(g->map.we);
-	if (g->map.ea)
-		free(g->map.ea);
+	if (g->map.NO)
+		free(g->map.NO);
+	if (g->map.SO)
+		free(g->map.SO);
+	if (g->map.WE)
+		free(g->map.WE);
+	if (g->map.EA)
+		free(g->map.EA);
 }
 
 void	close_img(int one, int two, int three, int four)

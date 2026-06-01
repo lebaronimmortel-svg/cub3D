@@ -12,11 +12,26 @@
 
 #include "../../header/header.h"
 
+/*
+** SDL scancodes used:
+**   41  ESC
+**   26  W       -> keys[0]  move forward
+**   22  S       -> keys[1]  move backward
+**    4  A       -> keys[2]  rotate left
+**    7  D       -> keys[3]  rotate right
+**   82  UP      -> keys[0]  (same as W)
+**   81  DOWN    -> keys[1]  (same as S)
+**   80  LEFT    -> keys[2]  (same as A)
+**   79  RIGHT   -> keys[3]  (same as D)
+*/
+
 static int	key_to_index(int key)
 {
 	if (key == 26 || key == 82)
+	{
 		return (0);
-	if (key == 22 || key == 81)
+	}
+		if (key == 22 || key == 81)
 		return (1);
 	if (key == 4 || key == 80)
 		return (2);

@@ -57,22 +57,22 @@ void	draw_floor_ceiling(t_game *g)
 	}
 }
 
-static int	pick_tex(int side, int step_x, int step_y)
+static int pick_tex(int side, int step_x, int step_y)
 {
-	if (side == 0)
-	{
-		if (step_x > 0)
-			return (3);
-		else
-			return (2);
-	}
-	else
-	{
-		if (step_y > 0)
-			return (1);
-		else
-			return (0);
-	}
+    if (side == 0)
+    {
+        if (step_x > 0)
+            return 3;
+        else
+            return 2;
+    }
+    else
+    {
+        if (step_y > 0)
+            return 1;
+        else
+            return 0;
+    }
 }
 
 void	cast_ray(t_game *g, int x)
@@ -107,14 +107,16 @@ void	cast_ray(t_game *g, int x)
 	rdir_y = g->player.dir_y + g->player.plane_y * cam_x;
 	map_x = (int)g->player.pos_x;
 	map_y = (int)g->player.pos_y;
-	if (rdir_x == 0.0)
+	if (rdir_x == 0.0) {
 		ddist_x = 1e30;
-	else
+	} else {
 		ddist_x = fabs(1.0 / rdir_x);
-	if (rdir_y == 0.0)
+	}
+	if (rdir_y == 0.0) {
 		ddist_y = 1e30;
-	else
+	} else {
 		ddist_y = fabs(1.0 / rdir_y);
+	}
 	if (rdir_x < 0.0)
 	{
 		step_x = -1;
