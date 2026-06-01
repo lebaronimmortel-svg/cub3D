@@ -59,32 +59,44 @@ static int	is_texture_text(char **map, int *i, t_map *tm)
 	ea = 0;
 	while (map[*i] && !is_space(map[*i]))
 	{
+		map[*i] = ft_strtrim(map[*i], " ");
 		if (!ft_strncmp(map[*i], "NO ", 3) && !has_hole(&map[*i][4]))
 		{
-			no++;
+
 			result = ft_strtrim(&map[*i][2], " ");
+			if (result[ft_strlen(result) - 1] == 9)
+				break ;
 			tm->NO = ft_strjoin("", skip_spaces(result));
+			no++;
 			(*i)++;
 		}
 		else if (!ft_strncmp(map[*i], "SO ", 3) && !has_hole(&map[*i][4]))
 		{
-			so++;
+
 			result = ft_strtrim(&map[*i][2], " ");
+			if (result[ft_strlen(result) - 1] == 9)
+				break ;
 			tm->SO = ft_strjoin("", skip_spaces(result));
+			so++;
 			(*i)++;
 		}
 		else if (!ft_strncmp(map[*i], "WE ", 3) && !has_hole(&map[*i][4]))
 		{
-			we++;
+
 			result = ft_strtrim(&map[*i][2], " ");
+			if (result[ft_strlen(result) - 1] == 9)
+				break ;
 			tm->WE = ft_strjoin("", skip_spaces(result));
+			we++;
 			(*i)++;
 		}
 		else if (!ft_strncmp(map[*i], "EA ", 3) && !has_hole(&map[*i][4]))
 		{
-			ea++;
 			result = ft_strtrim(&map[*i][2], " ");
+			if (result[ft_strlen(result) - 1] == 9)
+				break ;
 			tm->EA = ft_strjoin("", skip_spaces(result));
+			ea++;
 			(*i)++;
 		}
 		else
@@ -159,19 +171,24 @@ static int	is_color_text(char **map, int *i, t_map *tm)
 	f = 0;
 	while (map[*i] && !is_space(map[*i]))
 	{
-		
+		map[*i] = ft_strtrim(map[*i] ," ");
 		if (!ft_strncmp(map[*i], "C ", 2) && is_ok_format(&map[*i][2]))
 		{
-			c++;
 			result = ft_strtrim(&map[*i][1], " ");
+			if (result[ft_strlen(result) - 1] == 9)
+				break ;
 			tm->ceiling = parse_rgb(result);
+			c++;
 			(*i)++;
 		}
 		else if (!ft_strncmp(map[*i], "F ", 2) && is_ok_format(&map[*i][2]))
 		{
-			f++;
+
 			result = ft_strtrim(&map[*i][1], " ");
+			if (result[ft_strlen(result) - 1] == 9)
+				break ;
 			tm->floor = parse_rgb(result);
+			f++;
 			(*i)++;
 		}
 		else

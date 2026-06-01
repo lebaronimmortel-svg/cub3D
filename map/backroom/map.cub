@@ -1,17 +1,15 @@
+  C  73,72,36
+ F      73,72,36
 
-NO    ./map/backroom/png/no.png
-SO    ./map/backroom/png/so.png 
-WE    ./map/backroom/png/we.png  
-EA    ./map/backroom/png/ea.png  
+  EA           ./map/backroom/png/ea.png  
+ NO ./map/backroom/png/no.png    
+ SO    ./map/backroom/png/so.png    
+ WE      ./map/backroom/png/we.png  
+    
+ 
 
-F  73,72,36 
-C  73,72,36 
+ 
 
-   
-
-   
-  
-  
 11111 11111111
  10101111110001
 10011S000111011
