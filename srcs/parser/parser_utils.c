@@ -37,7 +37,10 @@ int	is_valid_border_line(char *str, int *error)
 	{
 		if (str[i] != '1' && str[i] != ' ')
 		{
-			*error = 5;
+			if (str[i] == '0')
+				*error = 5;
+			else
+				*error = 4;
 			return (0);
 		}
 		i++;

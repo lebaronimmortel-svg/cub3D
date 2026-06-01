@@ -12,6 +12,7 @@
 
 /* ---------- parser / utils ---------- */
 void	free_map(char **map);
+int     is_space(char *str);
 int		my_memlen(char **map);
 int		is_suround_diff(char **map);
 int		is_valid_name(char *filename);

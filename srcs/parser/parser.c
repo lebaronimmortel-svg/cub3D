@@ -36,7 +36,6 @@ static int	is_valid_square(char c)
 
 static int	is_valid_middle_line(char *str, int *ind_P, int *error)
 {
-	// faux : à modifier
 	int	i;
 
 	if (!str)
@@ -84,14 +83,14 @@ int	content_error_check(int fd, char *str2, int *error)
 	return (1);
 }
 
-static int is_space(char *str)
+int is_space(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != ' ')
+		if (str[i] != ' ' && str[i] != 9)
 			return (0);
 		i++;
 	}
@@ -112,7 +111,9 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 	{
 		*error = 6;
 		return (0);
-	}	
+	}
+	while(is_space(map[i]))
+		i++;
 	*start = i;
 	if (!is_suround_diff(&map[i]))
 	{
