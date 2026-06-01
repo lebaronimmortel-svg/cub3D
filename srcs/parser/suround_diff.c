@@ -13,10 +13,12 @@
 
 #include "../../header/header.h"
 
-int my_space_strlen(char *str)
+static int my_space_strlen(char *str)
 {
     int len;
 
+    if (!str || !(*str))
+        return (0);
     len = 0;
     while (str[len])
     {
@@ -30,7 +32,6 @@ int my_space_strlen(char *str)
 int is_suround_diff(char **map)
 {
     int i;
-    int j;
 
     i = 1;
     while (map[i])
@@ -40,7 +41,7 @@ int is_suround_diff(char **map)
             j = 0;
             while (map[i - 1][j])
                 j++;
-            while (map[i][j])
+            while (map[i - 1][j] && (map[i - 1][j] != ' ' && map[i - 1][j] != 9))
             {
                 if (map[i][j] != '1')
                     return (0);
@@ -52,7 +53,7 @@ int is_suround_diff(char **map)
             j = 0;
             while (map[i][j])
                 j++;
-            while (map[i - 1][j])
+            while (map[i][j] && (map[i][j] != ' ' && map[i][j] != 9))
             {
                 if (map[i - 1][j] != '1')
                     return (0);

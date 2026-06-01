@@ -43,6 +43,8 @@ static int	is_valid_middle_line(char *str, int *ind_P, int *error)
 	if (str[0] != '1')
 		return (0);
 	i = 1;
+	while(str[i] == ' ' || str[i] == 9)
+		i++;
 	while (str[i])
 	{
 		if (!is_valid_square(str[i]))
@@ -54,6 +56,26 @@ static int	is_valid_middle_line(char *str, int *ind_P, int *error)
 			|| str[i] == 'S' || str[i] == 'E')
 			(*ind_P)++;
 		i++;
+		if (str[i] == ' ' || str[i] == 9)
+		{
+			if (str[i - 1] != '1')
+			{
+				*error = 5;
+				return (0);
+			}
+			while (str[i] && (str[i] == ' ' || str[i] == 9))
+				i++;
+			if (str[i] == '\0')
+				break ;
+			if (str[i] != '1')
+			{
+				if (str[i] == '0')
+					*error = 5;
+				else 
+					*error = 4;
+				return (0);
+			}
+		}
 	}
 	if (str[i] == '\0')
 	{
@@ -100,6 +122,7 @@ int is_space(char *str)
 int	item_count(char **map, int *error, int *start, t_map *tm)
 {
 	int	i;
+	int j;
 	int	cnt;
 	int flag;
 
@@ -133,6 +156,25 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 		{
 			if (!is_valid_middle_line(map[i], &cnt, error))
 				return (0);
+		}
+		if (i != 0)
+		{
+			j = 0;
+			while (map[i][j] && map[i - 1][j])
+			{
+				if (map[i][j] == '0' && (map[i - 1][j] == ' ' || map[i - 1][j] == 9))
+				{
+					*error = 5;
+					return (0);
+				}
+				if (map[i - 1][j] == '0' && (map[i][j] == ' ' || map[i][j] == 9))
+				{
+					*error = 5;
+					return (0);
+				}
+				j++;
+			}
+
 		}
 		i++;
 	}
