@@ -1,7 +1,5 @@
-
-
-F 73,72,36
-C 73,72,36
+F 228,182,147
+C 241,193,157
 
 NO ./map/matrix/png/no.png
 SO ./map/matrix/png/so.png
