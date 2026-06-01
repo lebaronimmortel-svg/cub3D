@@ -12,12 +12,12 @@
 
 #include "../../header/header.h"
 
-static int	error_check(char *filename, int *error)
+static int	file_error_check(char *filename, int *error)
 {
 	int	fd;
 
 	if (!is_valid_name(filename) || ft_strlen(filename) < 5)
-		*error = 2;
+		*error = 3;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		*error = 3;
@@ -32,9 +32,9 @@ static char	**read_from_file(char *filename, int *error)
 	char	**map;
 	int		fd;
 
-	fd = error_check(filename, error);
+	fd = file_error_check(filename, error);
 	str2 = malloc(1);
-	if (!error_check2(fd, str2, error))
+	if (!content_error_check(fd, str2, error))
 		return (NULL);
 	*(str2) = '\0';
 	str0 = get_next_line(fd);
@@ -93,8 +93,6 @@ char	**create_map(char *filename, int *error, t_map *tm)
 		return (NULL);
 	if (!item_count(map, error, &start, tm))
 	{
-		if (*error == 0 || *error == 6 || *error == 7)
-			*error = 4;
 		free_map(map);
 		return (NULL);
 	}

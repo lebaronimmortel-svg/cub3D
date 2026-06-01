@@ -12,6 +12,24 @@
 
 #include "../../header/header.h"
 
+static void	put_error_msg(int error)
+{
+	if (error == 0)
+		ft_putstr_fd("MISSING PLAYER POSITION\n", 1);
+	if (error == 1)
+		ft_putstr_fd("BAD PERMISSIONS\n", 1);
+	if (error == 2)
+		ft_putstr_fd("MAP FILE REQUIRED\n", 1);
+	if (error == 3)
+		ft_putstr_fd("INVALID FILE NAME\n", 1);
+	if (error == 4)
+		ft_putstr_fd("UNEXPECTED TOKEN\n", 1);
+	if (error == 5)
+		ft_putstr_fd("UNCLOSED MAP\n", 1);
+	if (error == 6)
+		ft_putstr_fd("INVALID INFO SYNTAX\n", 1);
+}
+
 int	main_parser(int argc, char **argv, t_game *g)
 {
 	int	error;
@@ -29,13 +47,17 @@ int	main_parser(int argc, char **argv, t_game *g)
 		g->keys[i++] = 0;
 	error = 0;
 	if (argc != 2)
+	{		
+		ft_putstr_fd("ERROR : ", 1);
+		put_error_msg(2);	
 		return (0);
+	}
 	g->map.grid_map = create_map(argv[1], &error, &g->map);
 	if (!g->map.grid_map)
 	{
-		ft_putstr_fd("MAP NOT OK !\n", 1);
+		ft_putstr_fd("ERROR : ", 1);
+		put_error_msg(error);
 		return (0);
 	}
-	ft_putstr_fd("MAP OK !\n", 1);
 	return (1);
 }

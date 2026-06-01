@@ -26,7 +26,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-int	is_valid_border_line(char *str)
+int	is_valid_border_line(char *str, int *error)
 {
 	int	i;
 
@@ -36,7 +36,10 @@ int	is_valid_border_line(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] != '1')
+		{
+			*error = 5;
 			return (0);
+		}
 		i++;
 	}
 	return (1);
