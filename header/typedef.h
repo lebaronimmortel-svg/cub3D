@@ -55,6 +55,7 @@ typedef struct s_map
 ** keys[4] = LEFT   (rotate left,  arrow)
 ** keys[5] = RIGHT  (rotate right, arrow)
 */
+
 typedef struct s_game
 {
 	mlx_context				mlx;

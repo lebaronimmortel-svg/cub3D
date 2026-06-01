@@ -47,9 +47,9 @@ int	is_valid_border_line(char *str, int *error, char *pre_str)
 		{
 			if (i > 0 && (str[i - 1] == ' '))
 			{
-				if (my_space_strlen(str) > my_space_strlen(pre_str) || pre_str[i] == ' ' || pre_str[i])
+				if (my_space_strlen(str) > my_space_strlen(pre_str) || pre_str[i] == ' ')
 				{
-					*error = 8;
+					*error = 4;
 					return (0);
 				}
 			}

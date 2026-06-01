@@ -28,8 +28,6 @@ static void	put_error_msg(int error)
 		ft_putstr_fd("UNCLOSED MAP\n", 1);
 	if (error == 6)
 		ft_putstr_fd("INVALID INFO SYNTAX\n", 1);
-	if (error == 8)
-		ft_putstr_fd("SPLITTED MAP\n", 1);
 }
 
 int	main_parser(int argc, char **argv, t_game *g)

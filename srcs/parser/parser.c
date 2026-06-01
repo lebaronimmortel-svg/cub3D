@@ -45,7 +45,7 @@ static int	is_valid_middle_line(char *str, int *ind_P, int *error)
 		i++;
 	if (str[i] != '1' && !is_space(str))
 	{
-		*error = 8;
+		*error = 4;
 		return (0);
 	}
 	i = 1;
@@ -197,7 +197,7 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 	{
 		if (!is_space(map[i]))
 		{
-			*error = 8;
+			*error = 4;
 			return (0);
 		}
 		i++;

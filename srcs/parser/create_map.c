@@ -47,7 +47,7 @@ static char	**read_from_file(char *filename, int *error)
 		}
 		str0 = get_next_line(fd);
 	}
-	map = my_ft_split(str2, '\n'); // -> pb : les lignes vides sont ignorees alors qu'elles devraient etre remplacees par des espaces
+	map = my_ft_split(str2, '\n');
 	free(str2);
 	close(fd);
 	return (map);
