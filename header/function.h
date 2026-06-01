@@ -31,6 +31,7 @@ void	init_player(t_game *g);
 void	init_windows_mlx(t_game *g);
 void	init_events(t_game *g);
 void	init_game(void *ptr);
+int		init_img(t_game *g);
 
 /* ---------- events ---------- */
 void	press_escp(int key, void *param);
@@ -46,3 +47,5 @@ void	update_move(t_game *g, double ft);
 
 /* ---------- free ---------- */
 void	free_game(t_game *g);
+void	end_game(t_game *g);
+void	close_img(int one, int two, int three, int four);

@@ -85,6 +85,27 @@ void	init_events(t_game *g)
 	gettimeofday(&g->old_time, NULL);
 }
 
+int	init_img(t_game *g)
+{
+	int	one;
+	int	two;
+	int	three;
+	int	four;
+;
+	one = open(g->map.EA, O_RDONLY);
+	two = open(g->map.NO, O_RDONLY);
+	three = open(g->map.WE, O_RDONLY);
+	four = open(g->map.SO, O_RDONLY);
+	if (one == -1 || two == -1 || three == -1 || four == -1)
+	{
+		close_img(one, two, three, four);
+		printf("Error in the image files\n");
+		end_game(g);
+		exit(1);
+	}
+	return (1);
+}
+
 void	init_game(void *ptr)
 {
 	t_game			*g;

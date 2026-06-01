@@ -1,14 +1,13 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./map/oneqwdwd.png
+SO ./map/two.png
+WE ./map/three.png
+EA ./map/four.png
 
 F 220,100,7
 C 225,40,48
 
-                
-111111111111111                       
-101010101S10101           
-100000000000001                    
-111111101011001                       
-111111111111111                 
+111111111111111
+101010101S10101
+100000000000001
+111111101011001
+111111111111111

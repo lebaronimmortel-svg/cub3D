@@ -21,12 +21,11 @@ int	main(int argc, char **argv)
 	init_player(&g);
 	init_windows_mlx(&g);
 	init_events(&g);
+	init_img(&g);
 	init_game(&g);
 	mlx_loop(g.mlx);
 	if (g.img)
 		mlx_destroy_image(g.mlx, g.img);
-	mlx_destroy_window(g.mlx, g.win);
-	mlx_destroy_context(g.mlx);
-	free_game(&g);
+	end_game(&g);
 	return (0);
 }

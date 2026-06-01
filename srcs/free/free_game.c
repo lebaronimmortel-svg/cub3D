@@ -12,6 +12,16 @@
 
 #include "../../header/header.h"
 
+void	end_game(t_game *g)
+{
+	if (g->img)
+		mlx_destroy_image(g->mlx, g->img);
+	g->img = NULL;
+	mlx_destroy_window(g->mlx, g->win);
+	mlx_destroy_context(g->mlx);
+	free_game(g);
+}
+
 void	free_game(t_game *g)
 {
 	if (g->map.grid_map)
@@ -24,4 +34,16 @@ void	free_game(t_game *g)
 		free(g->map.WE);
 	if (g->map.EA)
 		free(g->map.EA);
+}
+
+void	close_img(int one, int two, int three, int four)
+{
+	if (one != -1)
+		close(one);
+	if (two != -1)
+		close(two);
+	if (three != -1)
+		close(three);
+	if (four != -1)
+		close(four);
 }
