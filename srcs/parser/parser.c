@@ -91,7 +91,6 @@ static int	is_valid_middle_line(char *str, int *ind_P, int *error)
 		{
 			if (str[i - 1] != ' ' && str[i - 1] != 9)
 			{
-				printf("prout\n");
 				*error = 5;
 				return (0);
 			}
@@ -163,7 +162,7 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 		if (!flag)
 		{
 			flag = 1;
-			if (!is_valid_border_line(map[i], error))
+			if (!is_valid_border_line(map[i], error, map[i + 1]))
 				return (0);
 		}
 		else
@@ -192,7 +191,7 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 		}
 		i++;
 	}
-	if (i != 0 && !is_valid_border_line(map[i - 1], error))
+	if (i != 0 && !is_valid_border_line(map[i - 1], error, map[i - 1]))
 		return (0);
 	while (map[i])
 	{
