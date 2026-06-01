@@ -104,6 +104,7 @@ static t_color	parse_rgb(char *str)
 int	check_infos(char **map, int *i, t_map *tm)
 {
 	char *result;
+	char *tmp;
 	int c;
 	int f;
 	int no;
@@ -125,68 +126,77 @@ int	check_infos(char **map, int *i, t_map *tm)
 			(*i)++;
 			continue ;
 		}
-		map[*i] = ft_strtrim(map[*i] ," ");
-		if (!ft_strncmp(map[*i], "C ", 2) && is_ok_format(&map[*i][2]))
+		tmp = ft_strtrim(map[*i] ," ");
+		if (!ft_strncmp(tmp, "C ", 2) && is_ok_format(&tmp[2]))
 		{
-			result = ft_strtrim(&map[*i][1], " ");
+			result = ft_strtrim(&tmp[1], " ");
 			if (result[ft_strlen(result) - 1] == 9)
 				break ;
 			tm->ceiling = parse_rgb(result);
 			c++;
 			(*i)++;
+			free(result);
 		}
-		else if (!ft_strncmp(map[*i], "F ", 2) && is_ok_format(&map[*i][2]))
+		else if (!ft_strncmp(tmp, "F ", 2) && is_ok_format(&tmp[2]))
 		{
 
-			result = ft_strtrim(&map[*i][1], " ");
+			result = ft_strtrim(&tmp[1], " ");
 			if (result[ft_strlen(result) - 1] == 9)
 				break ;
 			tm->floor = parse_rgb(result);
 			f++;
 			(*i)++;
+			free(result);
 		}
-		else if (!ft_strncmp(map[*i], "NO ", 3) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(tmp, "NO ", 3) && !has_hole(&tmp[4]))
 		{
 
-			result = ft_strtrim(&map[*i][2], " ");
+			result = ft_strtrim(&tmp[2], " ");
 			if (result[ft_strlen(result) - 1] == 9)
 				break ;
 			tm->NO = ft_strjoin("", skip_spaces(result));
 			no++;
 			(*i)++;
+			free(result);
 		}
-		else if (!ft_strncmp(map[*i], "SO ", 3) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(tmp, "SO ", 3) && !has_hole(&tmp[4]))
 		{
 
-			result = ft_strtrim(&map[*i][2], " ");
+			result = ft_strtrim(&tmp[2], " ");
 			if (result[ft_strlen(result) - 1] == 9)
 				break ;
 			tm->SO = ft_strjoin("", skip_spaces(result));
 			so++;
 			(*i)++;
+			free(result);
 		}
-		else if (!ft_strncmp(map[*i], "WE ", 3) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(tmp, "WE ", 3) && !has_hole(&tmp[4]))
 		{
 
-			result = ft_strtrim(&map[*i][2], " ");
+			result = ft_strtrim(&tmp[2], " ");
 			if (result[ft_strlen(result) - 1] == 9)
 				break ;
 			tm->WE = ft_strjoin("", skip_spaces(result));
 			we++;
 			(*i)++;
+			free(result);
 		}
-		else if (!ft_strncmp(map[*i], "EA ", 3) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(tmp, "EA ", 3) && !has_hole(&tmp[4]))
 		{
-			result = ft_strtrim(&map[*i][2], " ");
+			result = ft_strtrim(&tmp[2], " ");
 			if (result[ft_strlen(result) - 1] == 9)
 				break ;
 			tm->EA = ft_strjoin("", skip_spaces(result));
 			ea++;
 			(*i)++;
+			free(result);
 		}
 		else
+		{
+			free(tmp);
 			break ;
-
+		}
+		free(tmp);
 	}
 	if (c != 1 || f != 1 || ea != 1 || we != 1 || no != 1 || so != 1)
 		return (0);
