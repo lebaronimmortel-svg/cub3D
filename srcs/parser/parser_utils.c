@@ -47,13 +47,13 @@ int	is_valid_border_line(char *str, int *error, char *pre_str)
 		{
 			if (i > 0 && (str[i - 1] == ' '))
 			{
-				if (my_space_strlen(str) > my_space_strlen(pre_str) || pre_str[i] == ' ')
+				if (my_space_strlen(str) > my_space_strlen(pre_str)
+					|| pre_str[i] == ' ')
 				{
 					*error = 4;
 					return (0);
 				}
 			}
-
 		}
 		i++;
 	}
@@ -72,18 +72,18 @@ int	is_valid_name(char *filename)
 	return (1);
 }
 
-int my_space_strlen(char *str)
+int	my_space_strlen(char *str)
 {
-    int len;
+	int	len;
 
-    if (!str || !(*str))
-        return (0);
-    len = 0;
-    while (str[len])
-    {
-        if ((str[len] == ' ') && is_space(&str[len]))
-            return (len - 1);
-        len++;
-    }
-    return (len);
+	if (!str || !(*str))
+		return (0);
+	len = 0;
+	while (str[len])
+	{
+		if ((str[len] == ' ') && is_space(&str[len]))
+			return (len - 1);
+		len++;
+	}
+	return (len);
 }

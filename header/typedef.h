@@ -36,10 +36,10 @@ typedef struct s_player
 typedef struct s_map
 {
 	char		**grid_map;
-	char		*NO;
-	char		*SO;
-	char		*WE;
-	char		*EA;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
 	t_color		floor;
 	t_color		ceiling;
 	mlx_image	tex[4];

@@ -12,9 +12,9 @@
 
 /* ---------- parser / utils ---------- */
 char	**my_ft_split(char const *s, char c);
-int     my_space_strlen(char *str);
+int		my_space_strlen(char *str);
 void	free_map(char **map);
-int     is_space(char *str);
+int		is_space(char *str);
 int		my_memlen(char **map);
 int		is_suround_diff(char **map);
 int		is_valid_name(char *filename);

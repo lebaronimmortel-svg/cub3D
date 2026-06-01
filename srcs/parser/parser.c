@@ -49,7 +49,7 @@ static int	is_valid_middle_line(char *str, int *ind_P, int *error)
 		return (0);
 	}
 	i = 1;
-	while(str[i] == ' ')
+	while (str[i] == ' ')
 		i++;
 	while (str[i])
 	{
@@ -79,7 +79,7 @@ static int	is_valid_middle_line(char *str, int *ind_P, int *error)
 				{
 					*error = 5;
 				}
-				else 
+				else
 					*error = 4;
 				return (0);
 			}
@@ -113,9 +113,9 @@ int	content_error_check(int fd, char *str2, int *error)
 	return (1);
 }
 
-int is_space(char *str)
+int	is_space(char *str)
 {
-	int i;
+	int	i;
 
 	if (!(*str))
 		return (1);
@@ -132,9 +132,9 @@ int is_space(char *str)
 int	item_count(char **map, int *error, int *start, t_map *tm)
 {
 	int	i;
-	int j;
+	int	j;
 	int	cnt;
-	int flag;
+	int	flag;
 
 	if (!map || !(*map))
 		return (0);
@@ -145,7 +145,7 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 		*error = 6;
 		return (0);
 	}
-	while(is_space(map[i]))
+	while (is_space(map[i]))
 		i++;
 	*start = i;
 	if (!is_suround_diff(&map[i]))
@@ -184,7 +184,6 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 				}
 				j++;
 			}
-
 		}
 		i++;
 	}

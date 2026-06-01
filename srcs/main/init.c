@@ -90,10 +90,10 @@ int	init_img(t_game *g)
 	int	w;
 	int	h;
 
-	g->map.tex[0] = mlx_new_image_from_file(g->mlx, g->map.NO, &w, &h);
-	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.SO, &w, &h);
-	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.WE, &w, &h);
-	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.EA, &w, &h);
+	g->map.tex[0] = mlx_new_image_from_file(g->mlx, g->map.no, &w, &h);
+	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.so, &w, &h);
+	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.we, &w, &h);
+	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.ea, &w, &h);
 	g->map.tex_w = w;
 	g->map.tex_h = h;
 	if (!g->map.tex[0] || !g->map.tex[1] || !g->map.tex[2] || !g->map.tex[3])
