@@ -13,7 +13,7 @@
 
 #include "../../header/header.h"
 
-static int my_space_strlen(char *str)
+int my_space_strlen(char *str)
 {
     int len;
 
@@ -64,6 +64,4 @@ int is_suround_diff(char **map)
         i++;
     }
     return (1);
-
-
 }

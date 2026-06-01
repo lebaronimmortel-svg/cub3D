@@ -151,7 +151,7 @@ static int	is_color_text(char **map, int *i, t_map *tm)
 
 	c = 0;
 	f = 0;
-	while (map[*i] && !is_whitespace_line(map[*i]))
+	while (map[*i] && !is_space(map[*i]))
 	{
 		if (!ft_strncmp(map[*i], "C ", 1) && is_ok_format(&map[*i][2]))
 		{
@@ -175,30 +175,22 @@ static int	is_color_text(char **map, int *i, t_map *tm)
 
 int	check_infos(char **map, int *i, t_map *tm)
 {
-	while (map[*i] && is_whitespace_line(map[*i]))
+	while (is_space(map[*i]))
 		(*i)++;
 	if (is_color_text(map, i, tm))
 	{
-		while (map[*i] && is_whitespace_line(map[*i]))
+		while (is_space(map[*i]))
 			(*i)++;
 		if (is_texture_text(map, i, tm))
-		{
-			while (map[*i] && is_whitespace_line(map[*i]))
-				(*i)++;
 			return (1);
-		}
 		return (0);
 	}
 	else if (is_texture_text(map, i, tm))
 	{
-		while (map[*i] && is_whitespace_line(map[*i]))
+		while (is_space(map[*i]))
 			(*i)++;
 		if (is_color_text(map, i, tm))
-		{
-			while (map[*i] && is_whitespace_line(map[*i]))
-				(*i)++;
 			return (1);
-		}
 		return (0);
 	}
 	return (0);
