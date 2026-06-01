@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexfuen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -30,7 +30,7 @@ static void	put_error_msg(int error)
 		ft_putstr_fd("INVALID INFO SYNTAX\n", 1);
 }
 
-static void	game_init_fields(t_game *g)
+static void	struct_init(t_game *g)
 {
 	g->map.grid_map = NULL;
 	g->map.NO = NULL;
@@ -52,7 +52,7 @@ int	main_parser(int argc, char **argv, t_game *g)
 	int	error;
 	int	i;
 
-	game_init_fields(g);
+	struct_init(g);
 	i = 0;
 	while (i < 6)
 		g->keys[i++] = 0;

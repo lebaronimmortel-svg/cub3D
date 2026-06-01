@@ -12,20 +12,6 @@
 
 #include "../../header/header.h"
 
-static int	is_whitespace_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!(line[i] > 8 && line[i] < 14) || line[i] == 32)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 static int	has_hole(char *str)
 {
 	int	i;
@@ -71,7 +57,7 @@ static int	is_texture_text(char **map, int *i, t_map *tm)
 	so = 0;
 	we = 0;
 	ea = 0;
-	while (map[*i] && !is_whitespace_line(map[*i]))
+	while (map[*i] && !is_space(map[*i]))
 	{
 		if (!ft_strncmp(map[*i], "NO ", 3) && !has_hole(&map[*i][4]))
 		{
@@ -117,6 +103,8 @@ static int	is_ok_format(char *str)
 
 	i = 0;
 	cpt = 0;
+	while (str[i] == ' ')
+		i++;
 	while (str[i])
 	{
 		value = ft_atoi(&str[i]);
@@ -132,7 +120,7 @@ static int	is_ok_format(char *str)
 			i++;
 		else if (!ft_isdigit(str[i]))
 		{
-			if (is_whitespace_line(&str[i]))
+			if (is_space(&str[i]))
 				break ;
 			else
 				return (0);
@@ -165,21 +153,25 @@ static int	is_color_text(char **map, int *i, t_map *tm)
 {
 	int	c;
 	int	f;
+	char *result;
 
 	c = 0;
 	f = 0;
 	while (map[*i] && !is_space(map[*i]))
 	{
-		if (!ft_strncmp(map[*i], "C ", 1) && is_ok_format(&map[*i][2]))
+		
+		if (!ft_strncmp(map[*i], "C ", 2) && is_ok_format(&map[*i][2]))
 		{
 			c++;
-			tm->ceiling = parse_rgb(&map[*i][2]);
+			result = ft_strtrim(&map[*i][1], " ");
+			tm->ceiling = parse_rgb(result);
 			(*i)++;
 		}
-		else if (!ft_strncmp(map[*i], "F ", 1) && is_ok_format(&map[*i][2]))
+		else if (!ft_strncmp(map[*i], "F ", 2) && is_ok_format(&map[*i][2]))
 		{
 			f++;
-			tm->floor = parse_rgb(&map[*i][2]);
+			result = ft_strtrim(&map[*i][1], " ");
+			tm->floor = parse_rgb(result);
 			(*i)++;
 		}
 		else

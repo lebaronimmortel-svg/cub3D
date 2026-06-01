@@ -71,3 +71,19 @@ int	is_valid_name(char *filename)
 		return (0);
 	return (1);
 }
+
+int my_space_strlen(char *str)
+{
+    int len;
+
+    if (!str || !(*str))
+        return (0);
+    len = 0;
+    while (str[len])
+    {
+        if ((str[len] == ' ') && is_space(&str[len]))
+            return (len - 1);
+        len++;
+    }
+    return (len);
+}
