@@ -32,6 +32,7 @@ static int my_space_strlen(char *str)
 int is_suround_diff(char **map)
 {
     int i;
+    int j;
 
     i = 1;
     while (map[i])
