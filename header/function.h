@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 /* ---------- parser / utils ---------- */
+int     my_space_strlen(char *str);
 void	free_map(char **map);
 int     is_space(char *str);
 int		my_memlen(char **map);

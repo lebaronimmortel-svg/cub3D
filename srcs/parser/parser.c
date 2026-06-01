@@ -40,7 +40,7 @@ static int	is_valid_middle_line(char *str, int *ind_P, int *error)
 
 	if (!str)
 		return (0);
-	if (str[0] != '1')
+	if (str[0] != '1' && !is_space(str))
 		return (0);
 	i = 1;
 	while(str[i] == ' ' || str[i] == 9)
@@ -181,6 +181,18 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 	if (i != 0 && !is_valid_border_line(map[i - 1], error))
 		return (0);
 	if (cnt != 1)
+	{
+		*error = 0;
 		return (0);
+	}
+	while (map[i])
+	{
+		if (!is_space(map[i]))
+		{
+			*error = 8;
+			return (0);
+		}
+		i++;
+	}
 	return (1);
 }
