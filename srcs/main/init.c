@@ -100,9 +100,13 @@ int	init_img(t_game *g)
 	{
 		close_img(one, two, three, four);
 		printf("Error in the image files\n");
+		if (g->img)
+			mlx_destroy_image(g->mlx, g->img);
+		g->img = NULL;
 		end_game(g);
 		exit(1);
 	}
+	close_img(one, two, three, four);
 	return (1);
 }
 
