@@ -137,10 +137,7 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 	int flag;
 
 	if (!map || !(*map))
-	{
-		printf("1\n");
 		return (0);
-	}
 	i = 0;
 	cnt = 0;
 	if (!check_infos(map, &i, tm))

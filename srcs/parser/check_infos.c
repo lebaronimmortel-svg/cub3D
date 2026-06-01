@@ -32,6 +32,8 @@ static int	has_hole(char *str)
 	int	flag;
 
 	i = 0;
+	while (str[i] == ' ')
+		i++;
 	flag = 0;
 	while (str[i])
 	{
@@ -47,12 +49,23 @@ static int	has_hole(char *str)
 	return (0);
 }
 
+static char *skip_spaces(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	return (&str[i]);
+}
+
 static int	is_texture_text(char **map, int *i, t_map *tm)
 {
 	int	no;
 	int	so;
 	int	we;
 	int	ea;
+	char *result;
 
 	no = 0;
 	so = 0;
@@ -60,28 +73,32 @@ static int	is_texture_text(char **map, int *i, t_map *tm)
 	ea = 0;
 	while (map[*i] && !is_whitespace_line(map[*i]))
 	{
-		if (!ft_strncmp(map[*i], "NO ./", 5) && !has_hole(&map[*i][4]))
+		if (!ft_strncmp(map[*i], "NO ", 3) && !has_hole(&map[*i][4]))
 		{
 			no++;
-			tm->NO = ft_strjoin("", &map[*i][3]);
+			result = ft_strtrim(&map[*i][2], " ");
+			tm->NO = ft_strjoin("", skip_spaces(result));
 			(*i)++;
 		}
-		else if (!ft_strncmp(map[*i], "SO ./", 5) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(map[*i], "SO ", 3) && !has_hole(&map[*i][4]))
 		{
 			so++;
-			tm->SO = ft_strjoin("", &map[*i][3]);
+			result = ft_strtrim(&map[*i][2], " ");
+			tm->SO = ft_strjoin("", skip_spaces(result));
 			(*i)++;
 		}
-		else if (!ft_strncmp(map[*i], "WE ./", 5) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(map[*i], "WE ", 3) && !has_hole(&map[*i][4]))
 		{
 			we++;
-			tm->WE = ft_strjoin("", &map[*i][3]);
+			result = ft_strtrim(&map[*i][2], " ");
+			tm->WE = ft_strjoin("", skip_spaces(result));
 			(*i)++;
 		}
-		else if (!ft_strncmp(map[*i], "EA ./", 5) && !has_hole(&map[*i][4]))
+		else if (!ft_strncmp(map[*i], "EA ", 3) && !has_hole(&map[*i][4]))
 		{
 			ea++;
-			tm->EA = ft_strjoin("", &map[*i][3]);
+			result = ft_strtrim(&map[*i][2], " ");
+			tm->EA = ft_strjoin("", skip_spaces(result));
 			(*i)++;
 		}
 		else

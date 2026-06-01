@@ -90,6 +90,42 @@ int	init_img(t_game *g)
 	int	w;
 	int	h;
 
+	if (g->map.NO[ft_strlen(g->map.NO) - 1] == 9)
+	{
+		ft_putstr_fd("ERROR :\nUNEXPECTED TAB IN FILE NAME\n", 1);
+		if (g->img)
+			mlx_destroy_image(g->mlx, g->img);
+		g->img = NULL;
+		end_game(g);
+		exit(1);
+	}
+	if (g->map.SO[ft_strlen(g->map.SO) - 1] == 9)
+	{
+		ft_putstr_fd("ERROR :\nUNEXPECTED TAB IN FILE NAME\n", 1);
+		if (g->img)
+			mlx_destroy_image(g->mlx, g->img);
+		g->img = NULL;
+		end_game(g);
+		exit(1);
+	}
+	if (g->map.WE[ft_strlen(g->map.WE) - 1] == 9)
+	{
+		ft_putstr_fd("ERROR :\nUNEXPECTED TAB IN FILE NAME\n", 1);
+		if (g->img)
+			mlx_destroy_image(g->mlx, g->img);
+		g->img = NULL;
+		end_game(g);
+		exit(1);
+	}
+	if (g->map.EA[ft_strlen(g->map.EA) - 1] == 9)
+	{
+		ft_putstr_fd("ERROR :\nUNEXPECTED TAB IN FILE NAME\n", 1);
+		if (g->img)
+			mlx_destroy_image(g->mlx, g->img);
+		g->img = NULL;
+		end_game(g);
+		exit(1);
+	}
 	g->map.tex[0] = mlx_new_image_from_file(g->mlx, g->map.NO, &w, &h);
 	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.SO, &w, &h);
 	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.WE, &w, &h);
@@ -98,7 +134,7 @@ int	init_img(t_game *g)
 	g->map.tex_h = h;
 	if (!g->map.tex[0] || !g->map.tex[1] || !g->map.tex[2] || !g->map.tex[3])
 	{
-		printf("Error in the image files\n");
+		ft_putstr_fd("ERROR :\nIMAGES LOADING FAILED\n", 1);
 		if (g->img)
 			mlx_destroy_image(g->mlx, g->img);
 		g->img = NULL;
