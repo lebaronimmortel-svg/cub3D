@@ -14,8 +14,9 @@
 
 void	init_player(t_game *g)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	char	c;
 
 	y = 0;
 	while (g->map.grid_map[y])
@@ -23,40 +24,13 @@ void	init_player(t_game *g)
 		x = 0;
 		while (g->map.grid_map[y][x])
 		{
-			if (g->map.grid_map[y][x] == 'N' || g->map.grid_map[y][x] == 'S'
-				|| g->map.grid_map[y][x] == 'E'
-				|| g->map.grid_map[y][x] == 'W')
+			c = g->map.grid_map[y][x];
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			{
 				g->player.pos_x = x + 0.5;
 				g->player.pos_y = y + 0.5;
-				if (g->map.grid_map[y][x] == 'N')
-				{
-					g->player.dir_x = 0.0;
-					g->player.dir_y = -1.0;
-					g->player.plane_x = 0.66;
-					g->player.plane_y = 0.0;
-				}
-				else if (g->map.grid_map[y][x] == 'S')
-				{
-					g->player.dir_x = 0.0;
-					g->player.dir_y = 1.0;
-					g->player.plane_x = -0.66;
-					g->player.plane_y = 0.0;
-				}
-				else if (g->map.grid_map[y][x] == 'E')
-				{
-					g->player.dir_x = 1.0;
-					g->player.dir_y = 0.0;
-					g->player.plane_x = 0.0;
-					g->player.plane_y = 0.66;
-				}
-				else
-				{
-					g->player.dir_x = -1.0;
-					g->player.dir_y = 0.0;
-					g->player.plane_x = 0.0;
-					g->player.plane_y = -0.66;
-				}
+				set_player_dir_vec(g, c);
+				set_player_plane(g, c);
 				g->map.grid_map[y][x] = '0';
 			}
 			x++;

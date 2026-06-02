@@ -49,3 +49,7 @@ void	update_move(t_game *g, double ft);
 void	free_game(t_game *g);
 void	end_game(t_game *g);
 void	close_img(int one, int two, int three, int four);
+
+/* ---------- utils ---------- */
+void	set_player_dir_vec(t_game *g, char c);
+void	set_player_plane(t_game *g, char c);
