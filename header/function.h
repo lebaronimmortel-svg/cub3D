@@ -22,8 +22,6 @@ int		is_valid_border_line(char *str, int *error, char *pre_str);
 int		check_infos(char **map, int *i, t_map *tm);
 int		item_count(char **map, int *error, int *start, t_map *tm);
 char	**create_map(char *filename, int *error, t_map *tm);
-void	spawn_exit_coord(char **map, int *coord);
-void	flood_fill(char **map, int p_y, int p_x);
 int		content_error_check(int fd, char *str2, int *error);
 int		add_tail(char **str0, char **str1, char **str2);
 int		main_parser(int argc, char **argv, t_game *g);
