@@ -2,8 +2,9 @@ NAME        = cub3D
 
 # --- Directories ---
 SRC_DIR     = srcs
+OBJ_DIR_BNS = objs_bonus
 OBJ_DIR     = objs
-LIBFT_DIR   = srcs/libft
+LIBFT_DIR   = libft
 HEADER_DIR  = header
 MLX 		= ./MacroLibX/libmlx.so
 
@@ -23,12 +24,31 @@ SRC         =	srcs/main/main.c \
 				srcs/utils/move_utils.c \
 				srcs/utils/init_utils.c \
 				srcs/event/event.c \
-				srcs/free/free_game.c \
+				srcs/free/free_game.c
 
+BNS			= 	bonus/main/main_bonus.c \
+			    bonus/main/init_bonus.c \
+			    bonus/parser/parser_bonus.c \
+			    bonus/parser/utils_bonus.c \
+			    bonus/parser/parser_utils_bonus.c \
+			    bonus/parser/suround_diff_bonus.c \
+			    bonus/parser/main_parser_bonus.c \
+			    bonus/parser/create_map_bonus.c \
+			    bonus/parser/my_ft_split_bonus.c \
+			    bonus/parser/check_infos_bonus.c \
+			    bonus/raycasting/raycasting_bonus.c \
+			    bonus/event/event_bonus.c \
+				bonus/utils/set_player_bonus.c \
+				bonus/event/animation_bonus.c \
+			    bonus/free/free_game_bonus.c
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)
+OBJ_BNS     = $(BNS:%.c=$(OBJ_DIR_BNS)/%.o)
 HEADERS 	= header/typedef.h header/function.h header/header.h
+HEADER_BNS	= header_bonus/typedef_bonus.h header_bonus/function_bonus.h header_bonus/header_bonus.h
 LIBFT       = $(LIBFT_DIR)/libft.a
+HEADER_DIR_BNS = header_bonus
+
 CC          = cc
 FLAGS       = -Wall -Wextra -Werror -g
 RM          = rm -rf
@@ -37,10 +57,17 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(FLAGS) $^ -lSDL2 -lXext -lX11 -lm -o $(NAME)
+	
+bonus: $(OBJ_BNS) $(LIBFT) $(MLX)
+	$(CC) $(FLAGS) $^ -lSDL2 -lXext -lX11 -lm -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(FLAGS) -I $(HEADER_DIR) -I $(LIBFT_DIR) -c $< -o $@
+	
+$(OBJ_DIR_BNS)/%.o: %.c $(HEADERS_BNS)
+	@mkdir -p $(dir $@)
+	$(CC) $(FLAGS) -I $(HEADER_DIR_BNS) -I $(LIBFT_DIR) -c $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -52,6 +79,7 @@ clean:
 	make clean -C ./MacroLibX
 	make clean -C $(LIBFT_DIR)
 	$(RM) $(OBJ_DIR)
+	$(RM) $(OBJ_DIR_BNS)
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)

@@ -20,7 +20,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <math.h>
-# include "../srcs/libft/libft.h"
+# include "../libft/libft.h"
 # include "../MacroLibX/includes/mlx.h"
 # include "../MacroLibX/includes/mlx_extended.h"
 # include "../MacroLibX/includes/mlx_profile.h"

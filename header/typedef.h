@@ -12,7 +12,6 @@
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
-# include "../../header/header.h"
 
 typedef struct s_color
 {
