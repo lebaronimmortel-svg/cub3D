@@ -23,15 +23,6 @@ static mlx_color	rgb(int r, int g, int b)
 	return (c);
 }
 
-static int	is_wall(t_game *g, int wx, int wy)
-{
-	if (wy < 0 || wx < 0 || !g->map.grid_map[wy])
-		return (1);
-	if (!g->map.grid_map[wy][wx])
-		return (1);
-	return (g->map.grid_map[wy][wx] != '0');
-}
-
 void	draw_floor_ceiling(t_game *g)
 {
 	mlx_color	ceil_c;
@@ -54,24 +45,6 @@ void	draw_floor_ceiling(t_game *g)
 			x++;
 		}
 		y++;
-	}
-}
-
-static int	pick_tex(int side, int step_x, int step_y)
-{
-	if (side == 0)
-	{
-		if (step_x > 0)
-			return (3);
-		else
-			return (2);
-	}
-	else
-	{
-		if (step_y > 0)
-			return (1);
-		else
-			return (0);
 	}
 }
 
@@ -223,51 +196,14 @@ void	draw_scene(t_game *g)
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 }
 
-void	update_move(t_game *g, double ft)
+void	update_move(t_game *g, double ms, double rs)
 {
-	double	ms;
-	double	rs;
-	double	old_dir_x;
-	double	old_plane_x;
-	double	nx;
-	double	ny;
-
-	ms = ft * 3.0;
-	rs = ft * 2.0;
 	if (g->keys[0])
-	{
-		nx = g->player.pos_x + g->player.dir_x * ms;
-		ny = g->player.pos_y + g->player.dir_y * ms;
-		if (!is_wall(g, (int)nx, (int)g->player.pos_y))
-			g->player.pos_x = nx;
-		if (!is_wall(g, (int)g->player.pos_x, (int)ny))
-			g->player.pos_y = ny;
-	}
+		forward(g, ms);
 	if (g->keys[1])
-	{
-		nx = g->player.pos_x - g->player.dir_x * ms;
-		ny = g->player.pos_y - g->player.dir_y * ms;
-		if (!is_wall(g, (int)nx, (int)g->player.pos_y))
-			g->player.pos_x = nx;
-		if (!is_wall(g, (int)g->player.pos_x, (int)ny))
-			g->player.pos_y = ny;
-	}
-	if (g->keys[3])
-	{
-		old_dir_x = g->player.dir_x;
-		g->player.dir_x = g->player.dir_x * cos(rs) - g->player.dir_y * sin(rs);
-		g->player.dir_y = old_dir_x * sin(rs) + g->player.dir_y * cos(rs);
-		old_plane_x = g->player.plane_x;
-		g->player.plane_x = g->player.plane_x * cos(rs) - g->player.plane_y * sin(rs);
-		g->player.plane_y = old_plane_x * sin(rs) + g->player.plane_y * cos(rs);
-	}
+		backward(g, ms);
 	if (g->keys[2])
-	{
-		old_dir_x = g->player.dir_x;
-		g->player.dir_x = g->player.dir_x * cos(-rs) - g->player.dir_y * sin(-rs);
-		g->player.dir_y = old_dir_x * sin(-rs) + g->player.dir_y * cos(-rs);
-		old_plane_x = g->player.plane_x;
-		g->player.plane_x = g->player.plane_x * cos(-rs) - g->player.plane_y * sin(-rs);
-		g->player.plane_y = old_plane_x * sin(-rs) + g->player.plane_y * cos(-rs);
-	}
+		left(g, rs);
+	if (g->keys[3])
+		right(g, rs);
 }

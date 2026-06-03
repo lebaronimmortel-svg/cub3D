@@ -43,7 +43,7 @@ void	key_up(int key, void *param);
 void	draw_floor_ceiling(t_game *g);
 void	cast_ray(t_game *g, int x);
 void	draw_scene(t_game *g);
-void	update_move(t_game *g, double ft);
+void	update_move(t_game *g, double ms, double rs);
 
 /* ---------- free ---------- */
 void	free_game(t_game *g);
@@ -53,3 +53,11 @@ void	close_img(int one, int two, int three, int four);
 /* ---------- utils ---------- */
 void	set_player_dir_vec(t_game *g, char c);
 void	set_player_plane(t_game *g, char c);
+int		is_wall(t_game *g, int wx, int wy);
+int		pick_tex(int side, int step_x, int step_y);
+
+/* ---------- move_utils ---------- */
+void	forward(t_game *g, double ms);
+void	backward(t_game *g, double ms);
+void	left(t_game *g, double rs);
+void	right(t_game *g, double rs);

@@ -59,3 +59,30 @@ void	set_player_plane(t_game *g, char c)
 		g->player.plane_y = -0.66;
 	}
 }
+
+int	is_wall(t_game *g, int wx, int wy)
+{
+	if (wy < 0 || wx < 0 || !g->map.grid_map[wy])
+		return (1);
+	if (!g->map.grid_map[wy][wx])
+		return (1);
+	return (g->map.grid_map[wy][wx] != '0');
+}
+
+int	pick_tex(int side, int step_x, int step_y)
+{
+	if (side == 0)
+	{
+		if (step_x > 0)
+			return (3);
+		else
+			return (2);
+	}
+	else
+	{
+		if (step_y > 0)
+			return (1);
+		else
+			return (0);
+	}
+}

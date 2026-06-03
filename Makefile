@@ -20,6 +20,7 @@ SRC         =	srcs/main/main.c \
 				srcs/parser/check_infos.c \
 				srcs/raycasting/raycasting.c \
 				srcs/utils/utils.c \
+				srcs/utils/move_utils.c \
 				srcs/event/event.c \
 				srcs/free/free_game.c \
 
