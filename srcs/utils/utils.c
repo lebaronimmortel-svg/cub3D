@@ -86,3 +86,14 @@ int	pick_tex(int side, int step_x, int step_y)
 			return (0);
 	}
 }
+
+mlx_color	rgb(int r, int g, int b)
+{
+	mlx_color	c;
+
+	c.r = (uint8_t)r;
+	c.g = (uint8_t)g;
+	c.b = (uint8_t)b;
+	c.a = 255;
+	return (c);
+}

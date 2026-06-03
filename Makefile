@@ -21,6 +21,7 @@ SRC         =	srcs/main/main.c \
 				srcs/raycasting/raycasting.c \
 				srcs/utils/utils.c \
 				srcs/utils/move_utils.c \
+				srcs/utils/init_utils.c \
 				srcs/event/event.c \
 				srcs/free/free_game.c \
 

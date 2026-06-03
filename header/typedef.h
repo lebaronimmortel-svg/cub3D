@@ -47,15 +47,6 @@ typedef struct s_map
 	int			tex_h;
 }	t_map;
 
-/*
-** keys[0] = W      (move forward)
-** keys[1] = S      (move backward)
-** keys[2] = A      (rotate left)
-** keys[3] = D      (rotate right)
-** keys[4] = LEFT   (rotate left,  arrow)
-** keys[5] = RIGHT  (rotate right, arrow)
-*/
-
 typedef struct s_game
 {
 	mlx_context				mlx;
@@ -67,5 +58,27 @@ typedef struct s_game
 	int						keys[6];
 	struct timeval			old_time;
 }	t_game;
+
+typedef struct s_ray
+{
+	double	rdir_x;
+	double	rdir_y;
+	int		map_x;
+	int		map_y;
+	double	sdist_x;
+	double	sdist_y;
+	double	ddist_x;
+	double	ddist_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	double	perp;
+	int		lh;
+	int		ds;
+	int		de;
+	int		tex_x;
+	double	tex_step;
+	double	tex_pos;
+}	t_ray;
 
 #endif

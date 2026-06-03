@@ -43,7 +43,6 @@ void	key_up(int key, void *param);
 void	draw_floor_ceiling(t_game *g);
 void	cast_ray(t_game *g, int x);
 void	draw_scene(t_game *g);
-void	update_move(t_game *g, double ms, double rs);
 
 /* ---------- free ---------- */
 void	free_game(t_game *g);
@@ -51,13 +50,22 @@ void	end_game(t_game *g);
 void	close_img(int one, int two, int three, int four);
 
 /* ---------- utils ---------- */
-void	set_player_dir_vec(t_game *g, char c);
-void	set_player_plane(t_game *g, char c);
-int		is_wall(t_game *g, int wx, int wy);
-int		pick_tex(int side, int step_x, int step_y);
+void		set_player_dir_vec(t_game *g, char c);
+void		set_player_plane(t_game *g, char c);
+int			is_wall(t_game *g, int wx, int wy);
+int			pick_tex(int side, int step_x, int step_y);
+mlx_color	rgb(int r, int g, int b);
 
 /* ---------- move_utils ---------- */
 void	forward(t_game *g, double ms);
 void	backward(t_game *g, double ms);
 void	left(t_game *g, double rs);
 void	right(t_game *g, double rs);
+void	update_move(t_game *g, double ms, double rs);
+
+/* ---------- init_utils ---------- */
+void		init_ray(t_game *g, t_ray *r, int x);
+void		init_dda(t_game *g, t_ray *r);
+void		dda_loop(t_game *g, t_ray *r);
+mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y);
+void		draw_col(t_game *g, t_ray *r, int x);

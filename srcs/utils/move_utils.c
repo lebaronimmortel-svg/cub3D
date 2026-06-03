@@ -66,3 +66,15 @@ void	right(t_game *g, double rs)
 		* sin(rs);
 	g->player.plane_y = old_plane_x * sin(rs) + g->player.plane_y * cos(rs);
 }
+
+void	update_move(t_game *g, double ms, double rs)
+{
+	if (g->keys[0])
+		forward(g, ms);
+	if (g->keys[1])
+		backward(g, ms);
+	if (g->keys[2])
+		left(g, rs);
+	if (g->keys[3])
+		right(g, rs);
+}
