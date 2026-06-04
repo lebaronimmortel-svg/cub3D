@@ -51,12 +51,25 @@ mlx_color	rgb(int r, int g, int b);
 void	draw_floor_ceiling(t_game *g);
 void	cast_ray(t_game *g, int x);
 void	draw_scene(t_game *g);
-void	update_move(t_game *g, double ft);
 
 /* ---------- free ---------- */
 void	free_game(t_game *g);
 void	end_game(t_game *g);
 void	close_img(int one, int two, int three, int four);
 
+/* ---------- move_utils ---------- */
+void	forward(t_game *g, double ms);
+void	backward(t_game *g, double ms);
+void	left(t_game *g, double rs);
+void	right(t_game *g, double rs);
+void	update_move(t_game *g, double ms, double rs);
+
 /* ---------- animation ---------- */
 void    display_hands(t_game *g);
+
+/* ---------- init_utils ---------- */
+void		init_ray(t_game *g, t_ray *r, int x);
+void		init_dda(t_game *g, t_ray *r);
+void		dda_loop(t_game *g, t_ray *r);
+mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y);
+void		draw_col(t_game *g, t_ray *r, int x);

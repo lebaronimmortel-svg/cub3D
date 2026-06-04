@@ -38,9 +38,11 @@ BNS			= 	bonus/main/main_bonus.c \
 			    bonus/parser/check_infos_bonus.c \
 			    bonus/raycasting/raycasting_bonus.c \
 			    bonus/event/event_bonus.c \
-				bonus/utils/set_player_bonus.c \
 				bonus/event/animation_bonus.c \
-			    bonus/free/free_game_bonus.c
+			    bonus/free/free_game_bonus.c \
+				bonus/utils/init_utils_bonus.c \
+				bonus/utils/move_utils_bonus.c \
+				bonus/utils/utils_bonus.c
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)
 OBJ_BNS     = $(BNS:%.c=$(OBJ_DIR_BNS)/%.o)

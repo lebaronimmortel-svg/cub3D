@@ -113,6 +113,6 @@ void	init_game(void *ptr)
 	ft = (now.tv_sec - g->old_time.tv_sec)
 		+ (now.tv_usec - g->old_time.tv_usec) / 1e6;
 	g->old_time = now;
-	update_move(g, ft);
+	update_move(g, ft * 3.0, ft * 2.0);
 	draw_scene(g);
 }
