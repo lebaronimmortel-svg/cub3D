@@ -46,16 +46,6 @@ typedef struct s_map
 	int			tex_h;
 }	t_map;
 
-/*
-** keys[0] = W      	(move forward)
-** keys[1] = S      	(move backward)
-** keys[2] = A      	(rotate left)
-** keys[3] = D      	(rotate right)
-** keys[4] = LEFT   	(rotate left,  arrow)
-** keys[5] = RIGHT  	(rotate right, arrow)
-** keys[6] = MOUSE_LEFT (shoot)
-*/
-
 typedef struct s_game
 {
 	mlx_context				mlx;
