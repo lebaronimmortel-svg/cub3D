@@ -46,6 +46,8 @@ void	init_windows_mlx(t_game *g)
 	g->info.title = "cub3D";
 	g->info.width = 640;
 	g->info.height = 480;
+	g->is_shooting = 0;
+	g->timer = 0;
 	g->win = mlx_new_window(g->mlx, &g->info);
 	g->img = mlx_new_image(g->mlx, g->info.width, g->info.height);
 }
@@ -107,6 +109,8 @@ int	init_img(t_game *g) // check error
 	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.ea, &w, &h);
 	g->map.tex[4] = mlx_new_image_from_file(g->mlx,
 			"map/backroom/png/lock_door.png", &w, &h);
+	g->map.tex[5] = mlx_new_image_from_file(g->mlx,
+			"map/backroom/png/door.png", &w, &h);
 	g->map.tex_w = w;
 	g->map.tex_h = h;
 	if (!g->idle || !g->map.tex[0] || !g->map.tex[1]

@@ -47,6 +47,8 @@ static void	tex_init(t_game *g)
 	g->map.tex[1] = NULL;
 	g->map.tex[2] = NULL;
 	g->map.tex[3] = NULL;
+	g->map.tex[4] = NULL;
+	g->map.tex[5] = NULL;
 	g->map.tex_w = 0;
 	g->map.tex_h = 0;
 	g->idle = NULL;

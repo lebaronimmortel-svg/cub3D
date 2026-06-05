@@ -26,6 +26,20 @@ int	is_door(t_game *g, int i, int j)
 	return (0);
 }
 
+static int is_open_door(t_game *g, int i, int j)
+{
+	char	**map;
+
+	map = g->map.grid_map;
+	if (!g || !map || j >= my_memlen(map))
+		return (0);
+	if (i >= (int)ft_strlen(map[j]))
+		return (0);
+	if (map[j][i] == 'A')
+		return (1);
+	return (0);
+}
+
 void	init_ray(t_game *g, t_ray *r, int x)
 {
 	double	cam_x;
@@ -93,6 +107,21 @@ int	dda_loop(t_game *g, t_ray *r)
 			hit = 1;
 		else if (is_door(g, r->map_x, r->map_y))
 			hit = 2;
+		else if (is_open_door(g, r->map_x, r->map_y))
+			hit = 3;
+	}
+
+	if (hit == 2 && g->keys[6] && g->is_shooting == 0)
+	{
+			g->is_shooting = 1;
+			g->map.grid_map[r->map_y][r->map_x] = 'A';
+			hit = 3;
+	}
+	else if (hit == 3 && g->keys[6] && g->is_shooting == 0)
+	{
+			g->is_shooting = 1;
+			g->map.grid_map[r->map_y][r->map_x] = 'D';
+			hit = 2;
 	}
 	return (hit);
 }
@@ -112,6 +141,12 @@ mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y, int hit)
 	{
 		color = mlx_get_image_pixel(g->mlx,
 				g->map.tex[4],
+				r->tex_x, tex_y);
+	}
+	else if (hit == 3)
+	{
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[5],
 				r->tex_x, tex_y);
 	}
 	if (r->side == 1)

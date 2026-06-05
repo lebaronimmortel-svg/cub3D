@@ -88,6 +88,8 @@ void	draw_scene(t_game *g)
 {
 	int	x;
 
+	printf("%d\n", g->is_shooting);
+
 	g->timer += 1;
 	if (g->img)
 		mlx_destroy_image(g->mlx, g->img);

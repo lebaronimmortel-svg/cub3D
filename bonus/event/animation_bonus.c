@@ -73,6 +73,8 @@ void	display_hands(t_game *g)
 {
 	if ((!g->keys[0] && !g->keys[1]) || g->keys[6])
 		draw_cursor(g);
+	if (!g->keys[6])
+		g->is_shooting = 0;
 	if (g->keys[6] == 1)
 	{
 		if (g->timer / 3 % 6 == 0)

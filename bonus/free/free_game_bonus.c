@@ -39,7 +39,7 @@ void	end_game(t_game *g)
 	int	i;
 
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 	{
 		if (g->map.tex[i])
 			mlx_destroy_image(g->mlx, g->map.tex[i]);

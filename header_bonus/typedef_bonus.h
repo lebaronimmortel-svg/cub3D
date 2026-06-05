@@ -41,7 +41,7 @@ typedef struct s_map
 	char		*ea;
 	t_color		floor;
 	t_color		ceiling;
-	mlx_image	tex[5];
+	mlx_image	tex[6];
 	int			tex_w;
 	int			tex_h;
 }	t_map;
@@ -54,6 +54,7 @@ typedef struct s_game
 	mlx_image				img;
 	t_player				player;
 	t_map					map;
+	int						is_shooting;
 	int						keys[7];
 	int						timer;
 	mlx_image				idle;
