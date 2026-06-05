@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_game.c                                        :+:      :+:    :+:   */
+/*   free_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lukrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 08:40:54 by lukrodri          #+#    #+#             */
-/*   Updated: 2026/05/27 08:40:56 by lukrodri         ###   ########.fr       */
+/*   Updated: 2026/06/05 07:27:53 by lukrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header_bonus/header_bonus.h"
 
-void	end_game(t_game *g)
+static void	end_game_two(t_game *g)
 {
 	int	i;
 
-	i = 0;
-	while (i < 5)
-	{
-		if (g->map.tex[i])
-			mlx_destroy_image(g->mlx, g->map.tex[i]);
-		g->map.tex[i] = NULL;
-		i++;
-	}
 	i = 0;
 	while (i < 6)
 	{
@@ -40,6 +32,21 @@ void	end_game(t_game *g)
 		g->walk_anim[i] = NULL;
 		i++;
 	}
+}
+
+void	end_game(t_game *g)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (g->map.tex[i])
+			mlx_destroy_image(g->mlx, g->map.tex[i]);
+		g->map.tex[i] = NULL;
+		i++;
+	}
+	end_game_two(g);
 	if (g->idle)
 		mlx_destroy_image(g->mlx, g->idle);
 	g->idle = NULL;

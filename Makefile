@@ -43,7 +43,8 @@ BNS			= 	bonus/main/main_bonus.c \
 			    bonus/free/free_game_bonus.c \
 				bonus/utils/init_utils_bonus.c \
 				bonus/utils/move_utils_bonus.c \
-				bonus/utils/utils_bonus.c
+				bonus/utils/utils_bonus.c \
+				bonus/minimap/minimap_bonus.c
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)
 OBJ_BNS     = $(BNS:%.c=$(OBJ_DIR_BNS)/%.o)
