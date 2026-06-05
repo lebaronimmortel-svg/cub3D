@@ -87,6 +87,7 @@ int	init_img(t_game *g)
 	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.so, &w, &h);
 	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.we, &w, &h);
 	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.ea, &w, &h);
+	g->map.tex[4] = mlx_new_image_from_file(g->mlx, "map/backroom/png/door.png", &w, &h);
 	g->map.tex_w = w;
 	g->map.tex_h = h;
 	if (!g->idle || !g->map.tex[0] || !g->map.tex[1]

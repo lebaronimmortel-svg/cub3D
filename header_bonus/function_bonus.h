@@ -47,10 +47,12 @@ void	mouse_down(int key, void *param);
 void    timer(t_game *g);
 
 /* ---------- raycasting ---------- */
+int	        is_wall(t_game *g, int wx, int wy);
 mlx_color	rgb(int r, int g, int b);
-void	draw_floor_ceiling(t_game *g);
-void	cast_ray(t_game *g, int x);
-void	draw_scene(t_game *g);
+void	    draw_floor_ceiling(t_game *g);
+int	        pick_tex(int side, int step_x, int step_y);
+void	    cast_ray(t_game *g, int x);
+void	    draw_scene(t_game *g);
 
 /* ---------- free ---------- */
 void	free_game(t_game *g);
@@ -70,6 +72,6 @@ void    display_hands(t_game *g);
 /* ---------- init_utils ---------- */
 void		init_ray(t_game *g, t_ray *r, int x);
 void		init_dda(t_game *g, t_ray *r);
-void		dda_loop(t_game *g, t_ray *r);
-mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y);
-void		draw_col(t_game *g, t_ray *r, int x);
+int		    dda_loop(t_game *g, t_ray *r);
+mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y, int hit);
+void		draw_col(t_game *g, t_ray *r, int x, int hit);

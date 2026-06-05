@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/header.h"
+#include "../../header_bonus/header_bonus.h"
 
 void	set_player_dir_vec(t_game *g, char c)
 {
@@ -66,7 +66,7 @@ int	is_wall(t_game *g, int wx, int wy)
 		return (1);
 	if (!g->map.grid_map[wy][wx])
 		return (1);
-	return (g->map.grid_map[wy][wx] != '0');
+	return (g->map.grid_map[wy][wx] == '1');
 }
 
 int	pick_tex(int side, int step_x, int step_y)

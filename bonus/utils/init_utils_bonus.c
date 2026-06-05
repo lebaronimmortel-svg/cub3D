@@ -10,7 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/header.h"
+#include "../../header_bonus/header_bonus.h"
+
+static int is_door(t_game *g, int i, int j)
+{
+	char **map;
+
+	map = g->map.grid_map;
+	if (!g || !map || j >= my_memlen(map))
+		return (0);
+	if (i >= (int)ft_strlen(map[j]))
+		return (0);
+	if (map[j][i] == 'D')
+		return (1);
+	return (0);
+}
 
 void	init_ray(t_game *g, t_ray *r, int x)
 {
@@ -55,7 +69,7 @@ void	init_dda(t_game *g, t_ray *r)
 	}
 }
 
-void	dda_loop(t_game *g, t_ray *r)
+int	dda_loop(t_game *g, t_ray *r)
 {
 	int	hit;
 
@@ -77,17 +91,29 @@ void	dda_loop(t_game *g, t_ray *r)
 		}
 		if (is_wall(g, r->map_x, r->map_y))
 			hit = 1;
+		else if (is_door(g, r->map_x, r->map_y))
+			hit = 2;
 	}
+	return (hit);
 }
 
-mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y)
+mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y, int hit)
 {
 	mlx_color	color;
 
-	color = mlx_get_image_pixel(g->mlx,
-			g->map.tex[pick_tex(r->side,
-				r->step_x, r->step_y)],
-			r->tex_x, tex_y);
+	if (hit == 1)
+	{
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[pick_tex(r->side,
+					r->step_x, r->step_y)],
+				r->tex_x, tex_y);
+	}
+	else if (hit == 2)
+	{
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[4],
+				r->tex_x, tex_y);
+	}
 	if (r->side == 1)
 	{
 		color.r >>= 1;
@@ -97,7 +123,7 @@ mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y)
 	return (color);
 }
 
-void	draw_col(t_game *g, t_ray *r, int x)
+void	draw_col(t_game *g, t_ray *r, int x, int hit)
 {
 	int	py;
 	int	tex_y;
@@ -112,7 +138,7 @@ void	draw_col(t_game *g, t_ray *r, int x)
 			tex_y = g->map.tex_h - 1;
 		r->tex_pos += r->tex_step;
 		mlx_set_image_pixel(g->mlx, g->img, x, py,
-			get_tex_color(g, r, tex_y));
+			get_tex_color(g, r, tex_y, hit));
 		py++;
 	}
 }

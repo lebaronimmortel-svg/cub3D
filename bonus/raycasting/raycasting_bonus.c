@@ -74,13 +74,14 @@ static void	calc_tex_x(t_game *g, t_ray *r)
 void	cast_ray(t_game *g, int x)
 {
 	t_ray	r;
+	int 	hit;
 
 	init_ray(g, &r, x);
 	init_dda(g, &r);
-	dda_loop(g, &r);
+	hit = dda_loop(g, &r);
 	calc_slice(g, &r);
 	calc_tex_x(g, &r);
-	draw_col(g, &r, x);
+	draw_col(g, &r, x, hit);
 }
 
 void	draw_scene(t_game *g)

@@ -41,7 +41,7 @@ typedef struct s_map
 	char		*ea;
 	t_color		floor;
 	t_color		ceiling;
-	mlx_image	tex[4];
+	mlx_image	tex[5];
 	int			tex_w;
 	int			tex_h;
 }	t_map;

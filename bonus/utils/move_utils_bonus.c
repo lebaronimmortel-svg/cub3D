@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/header.h"
+#include "../../header_bonus/header_bonus.h"
 
 void	forward(t_game *g, double ms)
 {
