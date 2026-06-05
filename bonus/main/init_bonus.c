@@ -6,7 +6,7 @@
 /*   By: lukrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 08:07:11 by lukrodri          #+#    #+#             */
-/*   Updated: 2026/05/27 09:00:00 by lukrodri         ###   ########.fr       */
+/*   Updated: 2026/06/05 07:28:05 by lukrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	init_events(t_game *g)
 	gettimeofday(&g->old_time, NULL);
 	g->keys[6] = 0;
 }
-
-int	init_img(t_game *g)
+/*TODO*/
+int	init_img(t_game *g) // check error
 {
 	int	w;
 	int	h;
