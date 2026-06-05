@@ -60,15 +60,6 @@ void	set_player_plane(t_game *g, char c)
 	}
 }
 
-int	is_wall(t_game *g, int wx, int wy)
-{
-	if (wy < 0 || wx < 0 || !g->map.grid_map[wy])
-		return (1);
-	if (!g->map.grid_map[wy][wx])
-		return (1);
-	return (g->map.grid_map[wy][wx] == '1');
-}
-
 int	pick_tex(int side, int step_x, int step_y)
 {
 	if (side == 0)
@@ -96,4 +87,36 @@ mlx_color	rgb(int r, int g, int b)
 	c.b = (uint8_t)b;
 	c.a = 255;
 	return (c);
+}
+
+mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y, int hit)
+{
+	mlx_color	color;
+
+	if (hit == 1)
+	{
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[pick_tex(r->side,
+					r->step_x, r->step_y)],
+				r->tex_x, tex_y);
+	}
+	else if (hit == 2)
+	{
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[4],
+				r->tex_x, tex_y);
+	}
+	else if (hit == 3)
+	{
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[5],
+				r->tex_x, tex_y);
+	}
+	if (r->side == 1)
+	{
+		color.r >>= 1;
+		color.g >>= 1;
+		color.b >>= 1;
+	}
+	return (color);
 }

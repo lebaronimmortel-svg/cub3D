@@ -63,3 +63,12 @@ int	my_memlen(char **map)
 		i++;
 	return (i);
 }
+
+int	is_wall(t_game *g, int wx, int wy)
+{
+	if (wy < 0 || wx < 0 || !g->map.grid_map[wy])
+		return (1);
+	if (!g->map.grid_map[wy][wx])
+		return (1);
+	return (g->map.grid_map[wy][wx] == '1');
+}

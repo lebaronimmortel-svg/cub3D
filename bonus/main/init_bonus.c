@@ -63,12 +63,13 @@ void	init_events(t_game *g)
 	gettimeofday(&g->old_time, NULL);
 	g->keys[6] = 0;
 }
+
 /*TODO*/
-int	init_img(t_game *g) // check error
+int	init_img(t_game *g)
 {
 	int	w;
 	int	h;
-
+	// check error
 	g->idle = mlx_new_image_from_file(g->mlx,
 			"player_img/img.png", &w, &h);
 	g->walk_anim[0] = mlx_new_image_from_file(g->mlx,

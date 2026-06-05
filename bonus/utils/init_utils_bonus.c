@@ -26,7 +26,7 @@ int	is_door(t_game *g, int i, int j)
 	return (0);
 }
 
-static int is_open_door(t_game *g, int i, int j)
+static int	is_open_door(t_game *g, int i, int j)
 {
 	char	**map;
 
@@ -110,50 +110,17 @@ int	dda_loop(t_game *g, t_ray *r)
 		else if (is_open_door(g, r->map_x, r->map_y))
 			hit = 3;
 	}
-
 	if (hit == 2 && g->keys[6] && g->is_shooting == 0)
 	{
-			g->is_shooting = 1;
-			g->map.grid_map[r->map_y][r->map_x] = 'A';
-			hit = 3;
+		g->is_shooting = 1;
+		g->map.grid_map[r->map_y][r->map_x] = 'A';
+		hit = 3;
 	}
 	else if (hit == 3 && g->keys[6] && g->is_shooting == 0)
 	{
-			g->is_shooting = 1;
-			g->map.grid_map[r->map_y][r->map_x] = 'D';
-			hit = 2;
+		g->is_shooting = 1;
+		g->map.grid_map[r->map_y][r->map_x] = 'D';
+		hit = 2;
 	}
 	return (hit);
-}
-
-mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y, int hit)
-{
-	mlx_color	color;
-
-	if (hit == 1)
-	{
-		color = mlx_get_image_pixel(g->mlx,
-				g->map.tex[pick_tex(r->side,
-					r->step_x, r->step_y)],
-				r->tex_x, tex_y);
-	}
-	else if (hit == 2)
-	{
-		color = mlx_get_image_pixel(g->mlx,
-				g->map.tex[4],
-				r->tex_x, tex_y);
-	}
-	else if (hit == 3)
-	{
-		color = mlx_get_image_pixel(g->mlx,
-				g->map.tex[5],
-				r->tex_x, tex_y);
-	}
-	if (r->side == 1)
-	{
-		color.r >>= 1;
-		color.g >>= 1;
-		color.b >>= 1;
-	}
-	return (color);
 }
