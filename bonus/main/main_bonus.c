@@ -29,9 +29,9 @@ static void	mark_doors(t_game *g)
 		{
 			if (map[i][j] == '0')
 			{
-				if (map[i][j - 1] == '1' && map[i][j + 1] == '1')
+				if (map[i][j - 1] == '1' && map[i][j + 1] == '1' && map[i - 1][j] == '0' && map[i + 1][j] == '0')
 					map[i][j] = 'D';
-				else if (map[i - 1][j] == '1' && map[i + 1][j] == '1')
+				else if (map[i - 1][j] == '1' && map[i + 1][j] == '1' && map[i][j - 1] == '0' && map[i][j + 1] == '0')
 					map[i][j] = 'D';
 			}
 			j++;

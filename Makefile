@@ -37,7 +37,8 @@ BNS			= 	bonus/main/main_bonus.c \
 			    bonus/parser/my_ft_split_bonus.c \
 			    bonus/parser/check_infos_bonus.c \
 			    bonus/raycasting/raycasting_bonus.c \
-			    bonus/event/event_bonus.c \
+			    bonus/event/mouse_event_bonus.c \
+			    bonus/event/keyboard_event_bonus.c \
 				bonus/event/animation_bonus.c \
 			    bonus/free/free_game_bonus.c \
 				bonus/utils/init_utils_bonus.c \

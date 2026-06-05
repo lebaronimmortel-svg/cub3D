@@ -59,6 +59,7 @@ void	init_events(t_game *g)
 	mlx_on_event(g->mlx, g->win, MLX_WINDOW_EVENT, press_cross, g->mlx);
 	mlx_add_loop_hook(g->mlx, init_game, g);
 	gettimeofday(&g->old_time, NULL);
+	g->keys[6] = 0;
 }
 
 int	init_img(t_game *g)
