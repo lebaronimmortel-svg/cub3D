@@ -43,9 +43,6 @@ void	end_game(t_game *g)
 	if (g->idle)
 		mlx_destroy_image(g->mlx, g->idle);
 	g->idle = NULL;
-	//if (g->img)
-		//mlx_destroy_image(g->mlx, g->img);
-	//g->img = NULL;
 	mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_context(g->mlx);
 	free_game(g);

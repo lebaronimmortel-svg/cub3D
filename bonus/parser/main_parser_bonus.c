@@ -34,7 +34,7 @@ static void	put_error_msg(int error)
 
 static void	tex_init(t_game *g)
 {
-	int i;
+	int	i;
 
 	g->map.grid_map = NULL;
 	g->map.no = NULL;

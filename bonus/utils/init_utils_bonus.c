@@ -12,9 +12,9 @@
 
 #include "../../header_bonus/header_bonus.h"
 
-static int is_door(t_game *g, int i, int j)
+static int	is_door(t_game *g, int i, int j)
 {
-	char **map;
+	char	**map;
 
 	map = g->map.grid_map;
 	if (!g || !map || j >= my_memlen(map))

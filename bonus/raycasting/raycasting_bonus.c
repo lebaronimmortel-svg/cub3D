@@ -74,7 +74,7 @@ static void	calc_tex_x(t_game *g, t_ray *r)
 void	cast_ray(t_game *g, int x)
 {
 	t_ray	r;
-	int 	hit;
+	int		hit;
 
 	init_ray(g, &r, x);
 	init_dda(g, &r);
@@ -108,4 +108,3 @@ void	draw_scene(t_game *g)
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 	display_hands(g);
 }
-

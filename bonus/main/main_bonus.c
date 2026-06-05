@@ -12,18 +12,15 @@
 
 #include "../../header_bonus/header_bonus.h"
 
-static void mark_doors(t_game *g)
+static void	mark_doors(t_game *g)
 {
-	int i;
-	int j;
-	char **map;
+	int		i;
+	int		j;
+	char	**map;
 
-	if  (!g)
+	if (!g)
 		return ;
 	map = g->map.grid_map;
-
-	printf("%s\n", map[0]);
-
 	i = 1;
 	while (map[i + 1])
 	{
@@ -39,10 +36,8 @@ static void mark_doors(t_game *g)
 			}
 			j++;
 		}
-		printf("%s\n", map[i]);
 		i++;
 	}
-	printf("%s\n", map[i]);
 }
 
 int	main(int argc, char **argv)
@@ -56,12 +51,8 @@ int	main(int argc, char **argv)
 	init_events(&g);
 	init_img(&g);
 	init_game(&g);
-
-	///
 	mark_doors(&g);
-	///
-
-	mlx_loop(g.mlx); 
+	mlx_loop(g.mlx);
 	if (g.img)
 		mlx_destroy_image(g.mlx, g.img);
 	end_game(&g);

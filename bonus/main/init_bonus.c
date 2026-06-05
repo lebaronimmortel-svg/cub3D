@@ -66,7 +66,7 @@ int	init_img(t_game *g)
 	int	w;
 	int	h;
 
-	g->idle = mlx_new_image_from_file(g->mlx, "player_img/img.png", &w, &h); 
+	g->idle = mlx_new_image_from_file(g->mlx, "player_img/img.png", &w, &h);
 	g->walk_anim[0] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_00.png", &w, &h);
 	g->walk_anim[1] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_00,5.png", &w, &h);
 	g->walk_anim[2] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_01.png", &w, &h);
