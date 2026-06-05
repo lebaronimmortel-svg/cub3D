@@ -12,7 +12,7 @@
 
 #include "../../header_bonus/header_bonus.h"
 
-static int	is_door(t_game *g, int i, int j)
+int	is_door(t_game *g, int i, int j)
 {
 	char	**map;
 

@@ -68,6 +68,7 @@ void	update_move(t_game *g, double ms, double rs);
 
 /* ---------- animation ---------- */
 void    display_hands(t_game *g);
+int	    is_door(t_game *g, int i, int j);
 
 /* ---------- init_utils ---------- */
 void		init_ray(t_game *g, t_ray *r, int x);
