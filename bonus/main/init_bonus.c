@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lukrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -67,28 +67,46 @@ int	init_img(t_game *g)
 	int	w;
 	int	h;
 
-	g->idle = mlx_new_image_from_file(g->mlx, "player_img/img.png", &w, &h);
-	g->walk_anim[0] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_00.png", &w, &h);
-	g->walk_anim[1] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_00,5.png", &w, &h);
-	g->walk_anim[2] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_01.png", &w, &h);
-	g->walk_anim[3] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_01,5.png", &w, &h);
-	g->walk_anim[4] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_02.png", &w, &h);
-	g->walk_anim[5] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_02,5.png", &w, &h);
-	g->walk_anim[6] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_03.png", &w, &h);
-	g->walk_anim[7] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_03,5.png", &w, &h);
-	g->walk_anim[8] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_04.png", &w, &h);
-	g->walk_anim[9] = mlx_new_image_from_file(g->mlx, "player_img/walk_anim/walk_anim_04,5.png", &w, &h);
-	g->shot_anim[0] = mlx_new_image_from_file(g->mlx, "player_img/shot_anim/shot_anim_00.png", &w, &h);
-	g->shot_anim[1] = mlx_new_image_from_file(g->mlx, "player_img/shot_anim/shot_anim_01.png", &w, &h);
-	g->shot_anim[2] = mlx_new_image_from_file(g->mlx, "player_img/shot_anim/shot_anim_02.png", &w, &h);
-	g->shot_anim[3] = mlx_new_image_from_file(g->mlx, "player_img/shot_anim/shot_anim_03.png", &w, &h);
-	g->shot_anim[4] = mlx_new_image_from_file(g->mlx, "player_img/shot_anim/shot_anim_04.png", &w, &h);
-	g->shot_anim[5] = mlx_new_image_from_file(g->mlx, "player_img/shot_anim/shot_anim_05.png", &w, &h);
+	g->idle = mlx_new_image_from_file(g->mlx,
+			"player_img/img.png", &w, &h);
+	g->walk_anim[0] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_00.png", &w, &h);
+	g->walk_anim[1] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_00,5.png", &w, &h);
+	g->walk_anim[2] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_01.png", &w, &h);
+	g->walk_anim[3] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_01,5.png", &w, &h);
+	g->walk_anim[4] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_02.png", &w, &h);
+	g->walk_anim[5] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_02,5.png", &w, &h);
+	g->walk_anim[6] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_03.png", &w, &h);
+	g->walk_anim[7] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_03,5.png", &w, &h);
+	g->walk_anim[8] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_04.png", &w, &h);
+	g->walk_anim[9] = mlx_new_image_from_file(g->mlx,
+			"player_img/walk_anim/walk_anim_04,5.png", &w, &h);
+	g->shot_anim[0] = mlx_new_image_from_file(g->mlx,
+			"player_img/shot_anim/shot_anim_00.png", &w, &h);
+	g->shot_anim[1] = mlx_new_image_from_file(g->mlx,
+			"player_img/shot_anim/shot_anim_01.png", &w, &h);
+	g->shot_anim[2] = mlx_new_image_from_file(g->mlx,
+			"player_img/shot_anim/shot_anim_02.png", &w, &h);
+	g->shot_anim[3] = mlx_new_image_from_file(g->mlx,
+			"player_img/shot_anim/shot_anim_03.png", &w, &h);
+	g->shot_anim[4] = mlx_new_image_from_file(g->mlx,
+			"player_img/shot_anim/shot_anim_04.png", &w, &h);
+	g->shot_anim[5] = mlx_new_image_from_file(g->mlx,
+			"player_img/shot_anim/shot_anim_05.png", &w, &h);
 	g->map.tex[0] = mlx_new_image_from_file(g->mlx, g->map.no, &w, &h);
 	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.so, &w, &h);
 	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.we, &w, &h);
 	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.ea, &w, &h);
-	g->map.tex[4] = mlx_new_image_from_file(g->mlx, "map/backroom/png/door.png", &w, &h);
+	g->map.tex[4] = mlx_new_image_from_file(g->mlx,
+			"map/backroom/png/door.png", &w, &h);
 	g->map.tex_w = w;
 	g->map.tex_h = h;
 	if (!g->idle || !g->map.tex[0] || !g->map.tex[1]
