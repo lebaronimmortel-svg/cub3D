@@ -14,7 +14,7 @@
 
 static void	free_game(t_game *g)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	free_map(g->map.grid_map);
@@ -27,7 +27,7 @@ static void	free_game(t_game *g)
 		if (g->map.tex[i])
 			mlx_destroy_image(g->mlx, g->map.tex[i]);
 		i++;
-	}	
+	}
 	mlx_destroy_context(g->mlx);
 }
 
@@ -37,8 +37,6 @@ void	end_game(t_game *g)
 		mlx_destroy_window(g->mlx, g->win);
 	free_game(g);
 }
-
-
 
 void	close_img(int one, int two, int three, int four)
 {
