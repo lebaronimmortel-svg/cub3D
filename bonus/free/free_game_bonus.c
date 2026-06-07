@@ -12,7 +12,7 @@
 
 #include "../../header_bonus/header_bonus.h"
 
-static void	end_game_two(t_game *g)
+static void	destroy_img(t_game *g)
 {
 	int	i;
 
@@ -21,7 +21,6 @@ static void	end_game_two(t_game *g)
 	{
 		if (g->shot_anim[i])
 			mlx_destroy_image(g->mlx, g->shot_anim[i]);
-		g->shot_anim[i] = NULL;
 		i++;
 	}
 	i = 0;
@@ -29,9 +28,10 @@ static void	end_game_two(t_game *g)
 	{
 		if (g->walk_anim[i])
 			mlx_destroy_image(g->mlx, g->walk_anim[i]);
-		g->walk_anim[i] = NULL;
 		i++;
 	}
+	if (g->idle)
+		mlx_destroy_image(g->mlx, g->idle);
 }
 
 void	end_game(t_game *g)
@@ -43,30 +43,22 @@ void	end_game(t_game *g)
 	{
 		if (g->map.tex[i])
 			mlx_destroy_image(g->mlx, g->map.tex[i]);
-		g->map.tex[i] = NULL;
 		i++;
 	}
-	end_game_two(g);
-	if (g->idle)
-		mlx_destroy_image(g->mlx, g->idle);
-	g->idle = NULL;
-	mlx_destroy_window(g->mlx, g->win);
+	destroy_img(g);
+	if (g->win)
+		mlx_destroy_window(g->mlx, g->win);
 	mlx_destroy_context(g->mlx);
 	free_game(g);
 }
 
 void	free_game(t_game *g)
 {
-	if (g->map.grid_map)
-		free_map(g->map.grid_map);
-	if (g->map.no)
-		free(g->map.no);
-	if (g->map.so)
-		free(g->map.so);
-	if (g->map.we)
-		free(g->map.we);
-	if (g->map.ea)
-		free(g->map.ea);
+	free_map(g->map.grid_map);
+	free(g->map.no);
+	free(g->map.so);
+	free(g->map.we);
+	free(g->map.ea);
 }
 
 void	close_img(int one, int two, int three, int four)

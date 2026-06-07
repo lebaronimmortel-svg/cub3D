@@ -12,36 +12,33 @@
 
 #include "../../header/header.h"
 
-void	end_game(t_game *g)
+static void	free_game(t_game *g)
 {
-	int	i;
+	int i;
 
 	i = 0;
+	free_map(g->map.grid_map);
+	free(g->map.no);
+	free(g->map.so);
+	free(g->map.we);
+	free(g->map.ea);
 	while (i < 4)
 	{
 		if (g->map.tex[i])
 			mlx_destroy_image(g->mlx, g->map.tex[i]);
-		g->map.tex[i] = NULL;
 		i++;
-	}
-	mlx_destroy_window(g->mlx, g->win);
+	}	
 	mlx_destroy_context(g->mlx);
+}
+
+void	end_game(t_game *g)
+{
+	if (g->win)
+		mlx_destroy_window(g->mlx, g->win);
 	free_game(g);
 }
 
-void	free_game(t_game *g)
-{
-	if (g->map.grid_map)
-		free_map(g->map.grid_map);
-	if (g->map.no)
-		free(g->map.no);
-	if (g->map.so)
-		free(g->map.so);
-	if (g->map.we)
-		free(g->map.we);
-	if (g->map.ea)
-		free(g->map.ea);
-}
+
 
 void	close_img(int one, int two, int three, int four)
 {

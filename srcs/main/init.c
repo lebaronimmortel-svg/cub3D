@@ -39,7 +39,7 @@ void	init_player(t_game *g)
 	}
 }
 
-void	init_windows_mlx(t_game *g)
+int	init_windows_mlx(t_game *g)
 {
 	g->mlx = mlx_init();
 	g->info = (mlx_window_create_info){0};
@@ -47,7 +47,12 @@ void	init_windows_mlx(t_game *g)
 	g->info.width = 640;
 	g->info.height = 480;
 	g->win = mlx_new_window(g->mlx, &g->info);
+	if (!g->win)
+		return (0);
 	g->img = mlx_new_image(g->mlx, g->info.width, g->info.height);
+	if (!g->img)
+		return (0);
+	return (1);
 }
 
 void	init_events(t_game *g)
@@ -72,10 +77,7 @@ int	init_img(t_game *g)
 	g->map.tex_h = h;
 	if (!g->map.tex[0] || !g->map.tex[1] || !g->map.tex[2] || !g->map.tex[3])
 	{
-		ft_putstr_fd("ERROR :\nIMAGES LOADING FAILED\n", 1);
-		if (g->img)
-			mlx_destroy_image(g->mlx, g->img);
-		g->img = NULL;
+		ft_putstr_fd("Error :\nIMAGES LOADING FAILED\n", 1);
 		end_game(g);
 		exit(1);
 	}

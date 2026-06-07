@@ -28,7 +28,7 @@ int			main_parser(int argc, char **argv, t_game *g);
 
 /* ---------- init ---------- */
 void		init_player(t_game *g);
-void		init_windows_mlx(t_game *g);
+int	    	init_windows_mlx(t_game *g);
 void		init_events(t_game *g);
 void		init_game(void *ptr);
 int			init_img(t_game *g);
@@ -45,7 +45,6 @@ void		cast_ray(t_game *g, int x);
 void		draw_scene(t_game *g);
 
 /* ---------- free ---------- */
-void		free_game(t_game *g);
 void		end_game(t_game *g);
 void		close_img(int one, int two, int three, int four);
 

@@ -1,0 +1,28 @@
+{
+   Ignore_All_Conditional_Jumps
+   Memcheck:Cond
+   fun:*
+   ...
+}
+
+{
+   Ignore_All_Invalid_Reads
+   Memcheck:Value8
+   fun:*
+   ...
+}
+
+{
+   Ignore_All_Invalid_Reads_Alternative
+   Memcheck:Addr8
+   fun:*
+   ...
+}
+
+{
+   Ignore_All_Still_Reachable_Leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:*
+   ...
+}

@@ -39,7 +39,7 @@ void	init_player(t_game *g)
 	}
 }
 
-void	init_windows_mlx(t_game *g)
+int	init_windows_mlx(t_game *g)
 {
 	g->mlx = mlx_init();
 	g->info = (mlx_window_create_info){0};
@@ -48,8 +48,14 @@ void	init_windows_mlx(t_game *g)
 	g->info.height = 480;
 	g->is_shooting = 0;
 	g->timer = 0;
+	g->keys[6] = 0;
 	g->win = mlx_new_window(g->mlx, &g->info);
+	if (!g->win)
+		return (0);
 	g->img = mlx_new_image(g->mlx, g->info.width, g->info.height);
+	if (!g->img)
+		return (0);
+	return (1);
 }
 
 void	init_events(t_game *g)
@@ -61,15 +67,13 @@ void	init_events(t_game *g)
 	mlx_on_event(g->mlx, g->win, MLX_WINDOW_EVENT, press_cross, g->mlx);
 	mlx_add_loop_hook(g->mlx, init_game, g);
 	gettimeofday(&g->old_time, NULL);
-	g->keys[6] = 0;
 }
 
-/*TODO*/
 int	init_img(t_game *g)
 {
 	int	w;
 	int	h;
-	// check error
+
 	g->idle = mlx_new_image_from_file(g->mlx,
 			"player_img/img.png", &w, &h);
 	g->walk_anim[0] = mlx_new_image_from_file(g->mlx,
@@ -115,12 +119,15 @@ int	init_img(t_game *g)
 	g->map.tex_w = w;
 	g->map.tex_h = h;
 	if (!g->idle || !g->map.tex[0] || !g->map.tex[1]
-		|| !g->map.tex[2] || !g->map.tex[3])
+		|| !g->map.tex[2] || !g->map.tex[3] || !g->map.tex[4]
+		|| !g->map.tex[5] || !g->walk_anim[0] || !g->walk_anim[1]
+		|| !g->walk_anim[2] || !g->walk_anim[3] || !g->walk_anim[4]
+		|| !g->walk_anim[5] || !g->walk_anim[6] || !g->walk_anim[7]
+		|| !g->walk_anim[8] || !g->walk_anim[9] || !g->shot_anim[0]
+		|| !g->shot_anim[1] || !g->shot_anim[2] || !g->shot_anim[3]
+		|| !g->shot_anim[4] || !g->shot_anim[5])
 	{
 		ft_putstr_fd("Error\nIMAGES LOADING FAILED\n", 1);
-		if (g->img)
-			mlx_destroy_image(g->mlx, g->img);
-		g->img = NULL;
 		end_game(g);
 		exit(1);
 	}
