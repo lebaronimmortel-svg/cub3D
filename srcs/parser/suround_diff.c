@@ -14,7 +14,7 @@
 
 static int	is_suround_up(char **map, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	if (!map[i + 1])
@@ -34,7 +34,7 @@ static int	is_suround_up(char **map, int i)
 
 static int	is_suround_down(char **map, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (j <= my_space_strlen(map[i - 1]))
