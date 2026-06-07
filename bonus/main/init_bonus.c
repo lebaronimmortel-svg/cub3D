@@ -46,7 +46,7 @@ int	init_windows_mlx(t_game *g)
 	g->info.title = "cub3D";
 	g->info.width = 640;
 	g->info.height = 480;
-	g->is_shooting = 0;
+	g->player.is_shooting = 0;
 	g->timer = 0;
 	g->keys[6] = 0;
 	g->win = mlx_new_window(g->mlx, &g->info);
@@ -67,71 +67,6 @@ void	init_events(t_game *g)
 	mlx_on_event(g->mlx, g->win, MLX_WINDOW_EVENT, press_cross, g->mlx);
 	mlx_add_loop_hook(g->mlx, init_game, g);
 	gettimeofday(&g->old_time, NULL);
-}
-
-int	init_img(t_game *g)
-{
-	int	w;
-	int	h;
-
-	g->idle = mlx_new_image_from_file(g->mlx,
-			"player_img/img.png", &w, &h);
-	g->walk_anim[0] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_00.png", &w, &h);
-	g->walk_anim[1] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_00,5.png", &w, &h);
-	g->walk_anim[2] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_01.png", &w, &h);
-	g->walk_anim[3] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_01,5.png", &w, &h);
-	g->walk_anim[4] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_02.png", &w, &h);
-	g->walk_anim[5] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_02,5.png", &w, &h);
-	g->walk_anim[6] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_03.png", &w, &h);
-	g->walk_anim[7] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_03,5.png", &w, &h);
-	g->walk_anim[8] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_04.png", &w, &h);
-	g->walk_anim[9] = mlx_new_image_from_file(g->mlx,
-			"player_img/walk_anim/walk_anim_04,5.png", &w, &h);
-	g->shot_anim[0] = mlx_new_image_from_file(g->mlx,
-			"player_img/shot_anim/shot_anim_00.png", &w, &h);
-	g->shot_anim[1] = mlx_new_image_from_file(g->mlx,
-			"player_img/shot_anim/shot_anim_01.png", &w, &h);
-	g->shot_anim[2] = mlx_new_image_from_file(g->mlx,
-			"player_img/shot_anim/shot_anim_02.png", &w, &h);
-	g->shot_anim[3] = mlx_new_image_from_file(g->mlx,
-			"player_img/shot_anim/shot_anim_03.png", &w, &h);
-	g->shot_anim[4] = mlx_new_image_from_file(g->mlx,
-			"player_img/shot_anim/shot_anim_04.png", &w, &h);
-	g->shot_anim[5] = mlx_new_image_from_file(g->mlx,
-			"player_img/shot_anim/shot_anim_05.png", &w, &h);
-	g->map.tex[0] = mlx_new_image_from_file(g->mlx, g->map.no, &w, &h);
-	g->map.tex[1] = mlx_new_image_from_file(g->mlx, g->map.so, &w, &h);
-	g->map.tex[2] = mlx_new_image_from_file(g->mlx, g->map.we, &w, &h);
-	g->map.tex[3] = mlx_new_image_from_file(g->mlx, g->map.ea, &w, &h);
-	g->map.tex[4] = mlx_new_image_from_file(g->mlx,
-			"map/backroom/png/lock_door.png", &w, &h);
-	g->map.tex[5] = mlx_new_image_from_file(g->mlx,
-			"map/backroom/png/door.png", &w, &h);
-	g->map.tex_w = w;
-	g->map.tex_h = h;
-	if (!g->idle || !g->map.tex[0] || !g->map.tex[1]
-		|| !g->map.tex[2] || !g->map.tex[3] || !g->map.tex[4]
-		|| !g->map.tex[5] || !g->walk_anim[0] || !g->walk_anim[1]
-		|| !g->walk_anim[2] || !g->walk_anim[3] || !g->walk_anim[4]
-		|| !g->walk_anim[5] || !g->walk_anim[6] || !g->walk_anim[7]
-		|| !g->walk_anim[8] || !g->walk_anim[9] || !g->shot_anim[0]
-		|| !g->shot_anim[1] || !g->shot_anim[2] || !g->shot_anim[3]
-		|| !g->shot_anim[4] || !g->shot_anim[5])
-	{
-		ft_putstr_fd("Error\nIMAGES LOADING FAILED\n", 1);
-		end_game(g);
-		exit(1);
-	}
-	return (1);
 }
 
 void	init_game(void *ptr)

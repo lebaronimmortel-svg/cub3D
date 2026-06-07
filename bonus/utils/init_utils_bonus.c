@@ -40,47 +40,21 @@ static int	is_open_door(t_game *g, int i, int j)
 	return (0);
 }
 
-void	init_ray(t_game *g, t_ray *r, int x)
+static int	update_door_state(int hit, t_game *g, t_ray *r)
 {
-	double	cam_x;
-
-	cam_x = 2.0 * x / (double)g->info.width - 1.0;
-	r->rdir_x = g->player.dir_x + g->player.plane_x * cam_x;
-	r->rdir_y = g->player.dir_y + g->player.plane_y * cam_x;
-	r->map_x = (int)g->player.pos_x;
-	r->map_y = (int)g->player.pos_y;
-	if (r->rdir_x == 0.0)
-		r->ddist_x = 1e30;
-	else
-		r->ddist_x = fabs(1.0 / r->rdir_x);
-	if (r->rdir_y == 0.0)
-		r->ddist_y = 1e30;
-	else
-		r->ddist_y = fabs(1.0 / r->rdir_y);
-}
-
-void	init_dda(t_game *g, t_ray *r)
-{
-	if (r->rdir_x < 0.0)
+	if (hit == 2 && g->keys[6] && g->player.is_shooting == 0)
 	{
-		r->step_x = -1;
-		r->sdist_x = (g->player.pos_x - r->map_x) * r->ddist_x;
+		g->player.is_shooting = 1;
+		g->map.grid_map[r->map_y][r->map_x] = 'A';
+		hit = 3;
 	}
-	else
+	else if (hit == 3 && g->keys[6] && g->player.is_shooting == 0)
 	{
-		r->step_x = 1;
-		r->sdist_x = (r->map_x + 1.0 - g->player.pos_x) * r->ddist_x;
+		g->player.is_shooting = 1;
+		g->map.grid_map[r->map_y][r->map_x] = 'D';
+		hit = 2;
 	}
-	if (r->rdir_y < 0.0)
-	{
-		r->step_y = -1;
-		r->sdist_y = (g->player.pos_y - r->map_y) * r->ddist_y;
-	}
-	else
-	{
-		r->step_y = 1;
-		r->sdist_y = (r->map_y + 1.0 - g->player.pos_y) * r->ddist_y;
-	}
+	return (hit);
 }
 
 int	dda_loop(t_game *g, t_ray *r)
@@ -88,7 +62,6 @@ int	dda_loop(t_game *g, t_ray *r)
 	int	hit;
 
 	hit = 0;
-	r->side = 0;
 	while (!hit)
 	{
 		if (r->sdist_x < r->sdist_y)
@@ -110,17 +83,5 @@ int	dda_loop(t_game *g, t_ray *r)
 		else if (is_open_door(g, r->map_x, r->map_y))
 			hit = 3;
 	}
-	if (hit == 2 && g->keys[6] && g->is_shooting == 0)
-	{
-		g->is_shooting = 1;
-		g->map.grid_map[r->map_y][r->map_x] = 'A';
-		hit = 3;
-	}
-	else if (hit == 3 && g->keys[6] && g->is_shooting == 0)
-	{
-		g->is_shooting = 1;
-		g->map.grid_map[r->map_y][r->map_x] = 'D';
-		hit = 2;
-	}
-	return (hit);
+	return (update_door_state(hit, g, r));
 }

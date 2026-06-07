@@ -51,13 +51,13 @@ static void	tex_init(t_game *g)
 	g->map.tex[5] = NULL;
 	g->map.tex_w = 0;
 	g->map.tex_h = 0;
-	g->idle = NULL;
+	g->player.idle = NULL;
 	i = 0;
 	while (i < 10)
-		g->walk_anim[i++] = NULL;
+		g->player.walk_anim[i++] = NULL;
 	i = 0;
 	while (i < 6)
-		g->shot_anim[i++] = NULL;
+		g->player.shot_anim[i++] = NULL;
 }
 
 int	main_parser(int argc, char **argv, t_game *g)

@@ -12,6 +12,16 @@
 
 #include "../../header_bonus/header_bonus.h"
 
+static void	mark_square(char **map, int i, int j)
+{
+	if (map[i][j - 1] == '1' && map[i][j + 1] == '1'
+		&& map[i - 1][j] == '0' && map[i + 1][j] == '0')
+		map[i][j] = 'D';
+	else if (map[i - 1][j] == '1' && map[i + 1][j] == '1'
+		&& map[i][j - 1] == '0' && map[i][j + 1] == '0')
+		map[i][j] = 'D';
+}
+
 static void	mark_doors(t_game *g)
 {
 	int		i;
@@ -28,14 +38,7 @@ static void	mark_doors(t_game *g)
 		while (map[i][j + 1])
 		{
 			if (map[i][j] == '0')
-			{
-				if (map[i][j - 1] == '1' && map[i][j + 1] == '1'
-					&& map[i - 1][j] == '0' && map[i + 1][j] == '0')
-					map[i][j] = 'D';
-				else if (map[i - 1][j] == '1' && map[i + 1][j] == '1'
-					&& map[i][j - 1] == '0' && map[i][j + 1] == '0')
-					map[i][j] = 'D';
-			}
+				mark_square(map, i, j);
 			j++;
 		}
 		i++;
@@ -51,7 +54,12 @@ int	main(int argc, char **argv)
 	init_player(&g);
 	init_windows_mlx(&g);
 	init_events(&g);
-	init_img(&g);
+	if (!init_img(&g))
+	{
+		ft_putstr_fd("Error\nIMAGES LOADING FAILED\n", 1);
+		end_game(&g);
+		exit(1);
+	}
 	init_game(&g);
 	mark_doors(&g);
 	mlx_loop(g.mlx);

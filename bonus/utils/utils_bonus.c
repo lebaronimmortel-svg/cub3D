@@ -100,16 +100,10 @@ mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y, int hit)
 					r->step_x, r->step_y)],
 				r->tex_x, tex_y);
 	}
-	else if (hit == 2)
+	else if (hit == 2 || hit == 3)
 	{
 		color = mlx_get_image_pixel(g->mlx,
-				g->map.tex[4],
-				r->tex_x, tex_y);
-	}
-	else if (hit == 3)
-	{
-		color = mlx_get_image_pixel(g->mlx,
-				g->map.tex[5],
+				g->map.tex[2 + hit],
 				r->tex_x, tex_y);
 	}
 	if (r->side == 1)

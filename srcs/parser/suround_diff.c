@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   surround_diff.c                                    :+:      :+:    :+:   */
+/*   suround_diff.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexfuen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,36 +12,65 @@
 
 #include "../../header/header.h"
 
+static int	is_suround_up(char **map, int i)
+{
+	int j;
+
+	j = 0;
+	if (!map[i + 1])
+		return (1);
+	while (j <= my_space_strlen(map[i + 1]))
+		j++;
+	if (j > my_space_strlen(map[i]))
+		return (1);
+	while (j <= my_space_strlen(map[i]))
+	{
+		if (map[i][j] == '0')
+			return (0);
+		j++;
+	}
+	return (1);
+}
+
+static int	is_suround_down(char **map, int i)
+{
+	int j;
+
+	j = 0;
+	while (j <= my_space_strlen(map[i - 1]))
+		j++;
+	if (j > my_space_strlen(map[i]))
+		return (1);
+	while (j <= my_space_strlen(map[i]))
+	{
+		if (map[i][j] == '0')
+			return (0);
+		j++;
+	}
+	return (1);
+}
+
 int	is_suround_diff(char **map)
 {
 	int	i;
-	int	j;
 
 	i = 1;
 	while (map[i])
 	{
 		if (my_space_strlen(map[i]) > my_space_strlen(map[i - 1]))
 		{
-			j = 0;
-			while (map[i - 1][j])
-				j++;
-			while (map[i - 1][j] && (map[i - 1][j] != ' '))
+			if (!is_suround_down(map, i))
 			{
-				if (map[i][j] != '1')
-					return (0);
-				j++;
+				printf("Error at %d, %s\n", i, map[i]);
+				return (0);
 			}
 		}
 		else if (my_space_strlen(map[i]) < my_space_strlen(map[i - 1]))
 		{
-			j = 0;
-			while (map[i][j])
-				j++;
-			while (map[i][j] && (map[i][j] != ' '))
+			if (!is_suround_up(map, i))
 			{
-				if (map[i - 1][j] != '1')
-					return (0);
-				j++;
+				printf("Error at %d, %s\n", i, map[i]);
+				return (0);
 			}
 		}
 		i++;

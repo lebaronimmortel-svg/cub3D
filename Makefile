@@ -28,6 +28,7 @@ SRC         =	srcs/main/main.c \
 
 BNS			= 	bonus/main/main_bonus.c \
 			    bonus/main/init_bonus.c \
+				bonus/main/init_img_bonus.c \
 			    bonus/parser/parser_bonus.c \
 			    bonus/parser/utils_bonus.c \
 			    bonus/parser/parser_utils_bonus.c \
@@ -37,6 +38,7 @@ BNS			= 	bonus/main/main_bonus.c \
 			    bonus/parser/my_ft_split_bonus.c \
 			    bonus/parser/check_infos_bonus.c \
 			    bonus/raycasting/raycasting_bonus.c \
+				bonus/raycasting/raycasting_utils_bonus.c \
 			    bonus/event/mouse_event_bonus.c \
 			    bonus/event/keyboard_event_bonus.c \
 				bonus/event/animation_bonus.c \

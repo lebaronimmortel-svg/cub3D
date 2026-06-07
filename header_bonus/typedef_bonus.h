@@ -22,14 +22,18 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	move_speed;
-	double	rot_speed;
+	int			is_shooting;
+	mlx_image	walk_anim[10];
+	mlx_image	shot_anim[6];
+	mlx_image	idle;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		move_speed;
+	double		rot_speed;
 }	t_player;
 
 typedef struct s_map
@@ -54,12 +58,8 @@ typedef struct s_game
 	mlx_image				img;
 	t_player				player;
 	t_map					map;
-	int						is_shooting;
 	int						keys[7];
 	int						timer;
-	mlx_image				idle;
-	mlx_image				walk_anim[10];
-	mlx_image				shot_anim[6];
 	struct timeval			old_time;
 }	t_game;
 

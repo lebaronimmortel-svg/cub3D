@@ -19,19 +19,19 @@ static void	destroy_img(t_game *g)
 	i = 0;
 	while (i < 6)
 	{
-		if (g->shot_anim[i])
-			mlx_destroy_image(g->mlx, g->shot_anim[i]);
+		if (g->player.shot_anim[i])
+			mlx_destroy_image(g->mlx, g->player.shot_anim[i]);
 		i++;
 	}
 	i = 0;
 	while (i < 10)
 	{
-		if (g->walk_anim[i])
-			mlx_destroy_image(g->mlx, g->walk_anim[i]);
+		if (g->player.walk_anim[i])
+			mlx_destroy_image(g->mlx, g->player.walk_anim[i]);
 		i++;
 	}
-	if (g->idle)
-		mlx_destroy_image(g->mlx, g->idle);
+	if (g->player.idle)
+		mlx_destroy_image(g->mlx, g->player.idle);
 }
 
 void	end_game(t_game *g)

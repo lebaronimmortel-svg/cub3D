@@ -74,45 +74,62 @@ void	display_hands(t_game *g)
 	if ((!g->keys[0] && !g->keys[1]) || g->keys[6])
 		draw_cursor(g);
 	if (!g->keys[6])
-		g->is_shooting = 0;
+		g->player.is_shooting = 0;
 	if (g->keys[6] == 1)
 	{
 		if (g->timer / 3 % 6 == 0)
-			mlx_put_image_to_window(g->mlx, g->win, g->shot_anim[0], -20, 120);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.shot_anim[0], -20, 120);
 		else if (g->timer / 3 % 6 == 1)
-			mlx_put_image_to_window(g->mlx, g->win, g->shot_anim[1], -20, 120);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.shot_anim[1], -20, 120);
 		else if (g->timer / 3 % 6 == 2)
-			mlx_put_image_to_window(g->mlx, g->win, g->shot_anim[2], -20, 120);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.shot_anim[2], -20, 120);
 		else if (g->timer / 3 % 6 == 3)
-			mlx_put_image_to_window(g->mlx, g->win, g->shot_anim[3], -20, 120);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.shot_anim[3], -20, 120);
 		else if (g->timer / 3 % 6 == 4)
-			mlx_put_image_to_window(g->mlx, g->win, g->shot_anim[4], -20, 120);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.shot_anim[4], -20, 120);
 		else if (g->timer / 3 % 6 == 5)
-			mlx_put_image_to_window(g->mlx, g->win, g->shot_anim[5], -20, 120);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.shot_anim[5], -20, 120);
 	}
 	else if (g->keys[0] == 0 && g->keys[1] == 0)
-		mlx_put_image_to_window(g->mlx, g->win, g->idle, 100, 200);
+		mlx_put_image_to_window
+			(g->mlx, g->win, g->player.idle, 100, 200);
 	else
 	{
 		if (g->timer / 5 % 10 == 0)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[0], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[0], 100, 160);
 		if (g->timer / 5 % 10 == 1)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[1], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[1], 100, 160);
 		else if (g->timer / 5 % 10 == 2)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[2], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[2], 100, 160);
 		else if (g->timer / 5 % 10 == 3)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[3], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[3], 100, 160);
 		else if (g->timer / 5 % 10 == 4)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[4], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[4], 100, 160);
 		else if (g->timer / 5 % 10 == 5)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[5], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[5], 100, 160);
 		else if (g->timer / 5 % 10 == 6)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[6], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[6], 100, 160);
 		else if (g->timer / 5 % 10 == 7)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[7], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[7], 100, 160);
 		else if (g->timer / 5 % 10 == 8)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[8], 100, 160);
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[8], 100, 160);
 		else if (g->timer / 5 % 10 == 9)
-			mlx_put_image_to_window(g->mlx, g->win, g->walk_anim[9], 100, 160);
+			mlx_put_image_to_window(
+				g->mlx, g->win, g->player.walk_anim[9], 100, 160);
 	}
 }
