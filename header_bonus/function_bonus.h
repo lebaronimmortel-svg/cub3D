@@ -56,7 +56,7 @@ void		draw_scene(t_game *g);
 
 /* ---------- free ---------- */
 void		free_game(t_game *g);
-void		end_game(t_game *g);
+void		end_game(t_game *g, int flag);
 void		close_img(int one, int two, int three, int four);
 
 /* ---------- move_utils ---------- */

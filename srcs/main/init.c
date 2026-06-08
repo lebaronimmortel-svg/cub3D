@@ -78,7 +78,7 @@ int	init_img(t_game *g)
 	if (!g->map.tex[0] || !g->map.tex[1] || !g->map.tex[2] || !g->map.tex[3])
 	{
 		ft_putstr_fd("Error :\nIMAGES LOADING FAILED\n", 1);
-		end_game(g);
+		end_game(g, 1);
 		exit(1);
 	}
 	return (1);

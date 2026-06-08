@@ -31,8 +31,10 @@ static void	free_game(t_game *g)
 	mlx_destroy_context(g->mlx);
 }
 
-void	end_game(t_game *g)
+void	end_game(t_game *g, int flag)
 {
+	if (flag)
+		mlx_destroy_image(g->mlx, g->img);
 	if (g->win)
 		mlx_destroy_window(g->mlx, g->win);
 	free_game(g);

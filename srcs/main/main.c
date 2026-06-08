@@ -26,6 +26,6 @@ int	main(int argc, char **argv)
 	mlx_loop(g.mlx);
 	if (g.img)
 		mlx_destroy_image(g.mlx, g.img);
-	end_game(&g);
+	end_game(&g, 0);
 	return (0);
 }

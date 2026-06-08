@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	if (!init_img(&g))
 	{
 		ft_putstr_fd("Error\nIMAGES LOADING FAILED\n", 1);
-		end_game(&g);
+		end_game(&g, 1);
 		exit(1);
 	}
 	init_game(&g);
@@ -65,6 +65,6 @@ int	main(int argc, char **argv)
 	mlx_loop(g.mlx);
 	if (g.img)
 		mlx_destroy_image(g.mlx, g.img);
-	end_game(&g);
+	end_game(&g, 0);
 	return (0);
 }

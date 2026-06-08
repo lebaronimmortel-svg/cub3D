@@ -34,10 +34,12 @@ static void	destroy_img(t_game *g)
 		mlx_destroy_image(g->mlx, g->player.idle);
 }
 
-void	end_game(t_game *g)
+void	end_game(t_game *g, int flag)
 {
 	int	i;
 
+	if (flag)
+		mlx_destroy_image(g->mlx, g->img);
 	i = 0;
 	while (i < 6)
 	{
