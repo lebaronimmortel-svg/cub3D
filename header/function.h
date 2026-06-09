@@ -28,7 +28,7 @@ int			main_parser(int argc, char **argv, t_game *g);
 
 /* ---------- init ---------- */
 void		init_player(t_game *g);
-int	    	init_windows_mlx(t_game *g);
+int			init_windows_mlx(t_game *g);
 void		init_events(t_game *g);
 void		init_game(void *ptr);
 int			init_img(t_game *g);
