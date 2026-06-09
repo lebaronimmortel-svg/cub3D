@@ -25,14 +25,10 @@ char		**create_map(char *filename, int *error, t_map *tm);
 int			content_error_check(int fd, char *str2, int *error);
 int			add_tail(char **str0, char **str1, char **str2);
 int			main_parser(int argc, char **argv, t_game *g);
-int			is_valid_middle_line(char *str, int *ind_P, int *error);
-int			is_valid_square(char c);
-int			check_adjacent_lines(char **map, int i, int *error);
-int			validate_line(char **map, int i, int *cnt, int *error);
 
 /* ---------- init ---------- */
 void		init_player(t_game *g);
-int			init_windows_mlx(t_game *g);
+int	    	init_windows_mlx(t_game *g);
 void		init_events(t_game *g);
 void		init_game(void *ptr);
 int			init_img(t_game *g);
@@ -72,13 +68,3 @@ void		init_dda(t_game *g, t_ray *r);
 void		dda_loop(t_game *g, t_ray *r);
 mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y);
 void		draw_col(t_game *g, t_ray *r, int x);
-
-/* ---------- check_infos_utils ---------- */
-int			has_hole(char *str);
-char		*skip_spaces(char *str);
-int			is_ok_format_sec(char *str, int *i, int *cpt);
-int			is_ok_format(char *str, int i, int cpt);
-t_color		parse_rgb(char *str);
-
-/* ---------- check_infos_utils_bis ---------- */
-int			assign_color(int flag, t_map *tm, int *token, char *tmp);

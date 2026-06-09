@@ -3,72 +3,114 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexfuen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lukrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/11 10:47:59 by alexfuen          #+#    #+#             */
-/*   Updated: 2026/06/05 07:29:26 by lukrodri         ###   ########.fr       */
+/*   Created: 2026/05/20 08:24:49 by lukrodri          #+#    #+#             */
+/*   Updated: 2026/06/05 07:30:52 by lukrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header_bonus/header_bonus.h"
 
-void	free_map(char **map)
+void	set_player_dir_vec(t_game *g, char c)
 {
-	int	i;
-
-	if (!map)
-		return ;
-	i = 0;
-	while (map[i])
+	if (c == 'N')
 	{
-		free(map[i]);
-		i++;
+		g->player.dir_x = 0.0;
+		g->player.dir_y = -1.0;
 	}
-	free(map);
+	else if (c == 'S')
+	{
+		g->player.dir_x = 0.0;
+		g->player.dir_y = 1.0;
+	}
+	else if (c == 'E')
+	{
+		g->player.dir_x = 1.0;
+		g->player.dir_y = 0.0;
+	}
+	else if (c == 'W')
+	{
+		g->player.dir_x = -1.0;
+		g->player.dir_y = 0.0;
+	}
 }
 
-int	my_strchr(char *str, char c)
+void	set_player_plane(t_game *g, char c)
 {
-	size_t	i;
-
-	if (!str)
-		return (-1);
-	i = 0;
-	while (str[i])
+	if (c == 'N')
 	{
-		if (str[i] == c)
+		g->player.plane_x = 0.66;
+		g->player.plane_y = 0.0;
+	}
+	else if (c == 'S')
+	{
+		g->player.plane_x = -0.66;
+		g->player.plane_y = 0.0;
+	}
+	else if (c == 'E')
+	{
+		g->player.plane_x = 0.0;
+		g->player.plane_y = 0.66;
+	}
+	else if (c == 'W')
+	{
+		g->player.plane_x = 0.0;
+		g->player.plane_y = -0.66;
+	}
+}
+
+int	pick_tex(int side, int step_x, int step_y)
+{
+	if (side == 0)
+	{
+		if (step_x > 0)
+			return (3);
+		else
+			return (2);
+	}
+	else
+	{
+		if (step_y > 0)
 			return (1);
-		i++;
+		else
+			return (0);
 	}
-	return (0);
 }
 
-int	add_tail(char **str0, char **str1, char **str2)
+mlx_color	rgb(int r, int g, int b)
 {
-	*str1 = *str2;
-	*str2 = ft_strjoin(*str2, *str0);
-	free(*str0);
-	free(*str1);
-	if (!str2)
-		return (0);
-	return (1);
+	mlx_color	c;
+
+	c.r = (uint8_t)r;
+	c.g = (uint8_t)g;
+	c.b = (uint8_t)b;
+	c.a = 255;
+	return (c);
 }
 
-int	my_memlen(char **map)
+mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y, int hit)
 {
-	int	i;
+	mlx_color	color;
 
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-int	is_wall(t_game *g, int wx, int wy)
-{
-	if (wy < 0 || wx < 0 || !g->map.grid_map[wy])
-		return (1);
-	if (!g->map.grid_map[wy][wx])
-		return (1);
-	return (g->map.grid_map[wy][wx] == '1');
+	if (hit == 1)
+	{
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[pick_tex(r->side,
+					r->step_x, r->step_y)],
+				r->tex_x, tex_y);
+	}
+	else if (hit == 2 || hit == 3)
+	{
+		color = mlx_get_image_pixel(g->mlx,
+				g->map.tex[2 + hit],
+				r->tex_x, tex_y);
+	}
+	if (r->side == 1)
+	{
+		color.r >>= 1;
+		color.g >>= 1;
+		color.b >>= 1;
+	}
+	return (color);
 }
