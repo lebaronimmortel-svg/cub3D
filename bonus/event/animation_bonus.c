@@ -75,7 +75,7 @@ static void	put_shot_frame(t_game *g)
 	i = 0;
 	while (i < 7)
 	{
-		if (g->timer / 3 % 10 == i)
+		if (g->timer / 3 % 6 == i)
 		{
 			mlx_put_image_to_window
 				(g->mlx, g->win, g->player.shot_anim[i], -20, 120);

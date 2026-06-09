@@ -15,7 +15,7 @@
 static void	put_error_msg(int error)
 {
 	if (error == 0)
-		ft_putstr_fd("MISSING PLAYER POSITION\n", 1);
+		ft_putstr_fd("IMPLICIT START POSITION\n", 1);
 	else if (error == 1)
 		ft_putstr_fd("BAD PERMISSIONS\n", 1);
 	else if (error == 2)
@@ -72,14 +72,14 @@ int	main_parser(int argc, char **argv, t_game *g)
 	error = 7;
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error :\n", 1);
 		put_error_msg(2);
 		return (0);
 	}
 	g->map.grid_map = create_map(argv[1], &error, &g->map);
 	if (!g->map.grid_map)
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error :\n", 1);
 		put_error_msg(error);
 		return (0);
 	}
