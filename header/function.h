@@ -68,3 +68,13 @@ void		init_dda(t_game *g, t_ray *r);
 void		dda_loop(t_game *g, t_ray *r);
 mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y);
 void		draw_col(t_game *g, t_ray *r, int x);
+
+/* ---------- check_infos_utils ---------- */
+int			has_hole(char *str);
+char		*skip_spaces(char *str);
+int			is_ok_format_sec(char *str, int *i, int *cpt);
+int			is_ok_format(char *str, int i, int cpt);
+t_color		parse_rgb(char *str);
+
+/* ---------- check_infos_utils_bis ---------- */
+int			assign_color(int flag, t_map *tm, int *token, char *tmp);

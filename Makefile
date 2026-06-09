@@ -23,6 +23,8 @@ SRC         =	srcs/main/main.c \
 				srcs/utils/utils.c \
 				srcs/utils/move_utils.c \
 				srcs/utils/init_utils.c \
+				srcs/utils/check_infos_utils.c \
+				srcs/utils/check_infos_utils_bis.c \
 				srcs/event/event.c \
 				srcs/free/free_game.c
 

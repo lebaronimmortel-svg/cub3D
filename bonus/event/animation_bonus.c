@@ -32,16 +32,12 @@ void	draw_col(t_game *g, t_ray *r, int x, int hit)
 	}
 }
 
-static void	draw_cursor(t_game *g)
+static void	draw_cursor(t_game *g, mlx_color white, int y)
 {
-	mlx_color	white;
-	int			y;
 	int			x;
 	int			y2;
 	int			x2;
 
-	white = rgb(255, 255, 255);
-	y = 0;
 	while (y < 11)
 	{
 		x = 0;
@@ -69,33 +65,36 @@ static void	draw_cursor(t_game *g)
 	}
 }
 
+static void	hands_fisrt(t_game *g)
+{
+	if (g->timer / 3 % 6 == 0)
+		mlx_put_image_to_window
+			(g->mlx, g->win, g->player.shot_anim[0], -20, 120);
+	else if (g->timer / 3 % 6 == 1)
+		mlx_put_image_to_window
+			(g->mlx, g->win, g->player.shot_anim[1], -20, 120);
+	else if (g->timer / 3 % 6 == 2)
+		mlx_put_image_to_window
+			(g->mlx, g->win, g->player.shot_anim[2], -20, 120);
+	else if (g->timer / 3 % 6 == 3)
+		mlx_put_image_to_window
+			(g->mlx, g->win, g->player.shot_anim[3], -20, 120);
+	else if (g->timer / 3 % 6 == 4)
+		mlx_put_image_to_window
+			(g->mlx, g->win, g->player.shot_anim[4], -20, 120);
+	else if (g->timer / 3 % 6 == 5)
+		mlx_put_image_to_window
+			(g->mlx, g->win, g->player.shot_anim[5], -20, 120);
+}
+
 void	display_hands(t_game *g)
 {
 	if ((!g->keys[0] && !g->keys[1]) || g->keys[6])
-		draw_cursor(g);
+		draw_cursor(g, rgb(255, 255, 255), 0);
 	if (!g->keys[6])
 		g->player.is_shooting = 0;
 	if (g->keys[6] == 1)
-	{
-		if (g->timer / 3 % 6 == 0)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.shot_anim[0], -20, 120);
-		else if (g->timer / 3 % 6 == 1)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.shot_anim[1], -20, 120);
-		else if (g->timer / 3 % 6 == 2)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.shot_anim[2], -20, 120);
-		else if (g->timer / 3 % 6 == 3)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.shot_anim[3], -20, 120);
-		else if (g->timer / 3 % 6 == 4)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.shot_anim[4], -20, 120);
-		else if (g->timer / 3 % 6 == 5)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.shot_anim[5], -20, 120);
-	}
+		hands_fisrt(g);
 	else if (g->keys[0] == 0 && g->keys[1] == 0)
 		mlx_put_image_to_window
 			(g->mlx, g->win, g->player.idle, 100, 200);
