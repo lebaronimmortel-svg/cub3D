@@ -32,103 +32,87 @@ void	draw_col(t_game *g, t_ray *r, int x, int hit)
 	}
 }
 
-static void	draw_cursor(t_game *g, mlx_color white, int y)
+static void	put_white_pixel(t_game *g, int *coord)
 {
-	int			x;
-	int			y2;
-	int			x2;
+	mlx_color	white;
 
-	while (y < 11)
+	white = rgb(255, 255, 255);
+	mlx_set_image_pixel(g->mlx, g->img, 300 + (coord[1] * 2 + coord[3]++),
+		250 + (coord[0] * 2 + coord[2]), white);
+}
+
+static void	draw_cursor(t_game *g)
+{
+	int			coord[4];
+
+	coord[0] = 0;
+	while (coord[0] < 11)
 	{
-		x = 0;
-		while (x < 11)
+		coord[1] = 0;
+		while (coord[1] < 11)
 		{
-			if (y == 5 || x == 5)
+			if (coord[0] == 5 || coord[1] == 5)
 			{
-				y2 = 0;
-				while (y2 < 4)
+				coord[2] = 0;
+				while (coord[2] < 4)
 				{
-					x2 = 0;
-					while (x2 < 4)
-					{
-						mlx_set_image_pixel(g->mlx, g->img,
-							300 + (x * 2 + x2),
-							250 + (y * 2 + y2), white);
-						x2++;
-					}
-					y2++;
+					coord[3] = 0;
+					while (coord[3] < 4)
+						put_white_pixel(g, coord);
+					coord[2]++;
 				}
 			}
-			x++;
+			coord[1]++;
 		}
-		y++;
+		coord[0]++;
 	}
 }
 
-static void	hands_fisrt(t_game *g)
+static void	put_shot_frame(t_game *g)
 {
-	if (g->timer / 3 % 6 == 0)
-		mlx_put_image_to_window
-			(g->mlx, g->win, g->player.shot_anim[0], -20, 120);
-	else if (g->timer / 3 % 6 == 1)
-		mlx_put_image_to_window
-			(g->mlx, g->win, g->player.shot_anim[1], -20, 120);
-	else if (g->timer / 3 % 6 == 2)
-		mlx_put_image_to_window
-			(g->mlx, g->win, g->player.shot_anim[2], -20, 120);
-	else if (g->timer / 3 % 6 == 3)
-		mlx_put_image_to_window
-			(g->mlx, g->win, g->player.shot_anim[3], -20, 120);
-	else if (g->timer / 3 % 6 == 4)
-		mlx_put_image_to_window
-			(g->mlx, g->win, g->player.shot_anim[4], -20, 120);
-	else if (g->timer / 3 % 6 == 5)
-		mlx_put_image_to_window
-			(g->mlx, g->win, g->player.shot_anim[5], -20, 120);
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (g->timer / 5 % 10 == i)
+		{
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.shot_anim[i], -20, 120);
+			return ;
+		}
+		i++;
+	}
+}
+
+static void	put_walk_frame(t_game *g)
+{
+	int	i;
+
+	i = 0;
+	while (i < 10)
+	{
+		if (g->timer / 5 % 10 == i)
+		{
+			mlx_put_image_to_window
+				(g->mlx, g->win, g->player.walk_anim[i], 100, 160);
+			return ;
+		}
+		i++;
+	}
 }
 
 void	display_hands(t_game *g)
 {
 	if ((!g->keys[0] && !g->keys[1]) || g->keys[6])
-		draw_cursor(g, rgb(255, 255, 255), 0);
+		draw_cursor(g);
 	if (!g->keys[6])
 		g->player.is_shooting = 0;
 	if (g->keys[6] == 1)
-		hands_fisrt(g);
+		put_shot_frame(g);
 	else if (g->keys[0] == 0 && g->keys[1] == 0)
 		mlx_put_image_to_window
 			(g->mlx, g->win, g->player.idle, 100, 200);
 	else
-	{
-		if (g->timer / 5 % 10 == 0)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[0], 100, 160);
-		if (g->timer / 5 % 10 == 1)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[1], 100, 160);
-		else if (g->timer / 5 % 10 == 2)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[2], 100, 160);
-		else if (g->timer / 5 % 10 == 3)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[3], 100, 160);
-		else if (g->timer / 5 % 10 == 4)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[4], 100, 160);
-		else if (g->timer / 5 % 10 == 5)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[5], 100, 160);
-		else if (g->timer / 5 % 10 == 6)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[6], 100, 160);
-		else if (g->timer / 5 % 10 == 7)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[7], 100, 160);
-		else if (g->timer / 5 % 10 == 8)
-			mlx_put_image_to_window
-				(g->mlx, g->win, g->player.walk_anim[8], 100, 160);
-		else if (g->timer / 5 % 10 == 9)
-			mlx_put_image_to_window(
-				g->mlx, g->win, g->player.walk_anim[9], 100, 160);
-	}
+		put_walk_frame(g);
 }
