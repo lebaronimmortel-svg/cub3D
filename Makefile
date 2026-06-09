@@ -12,7 +12,6 @@ MLX 		= ./MacroLibX/libmlx.so
 SRC         =	srcs/main/main.c \
 				srcs/main/init.c \
 				srcs/parser/parser.c \
-				srcs/parser/utils.c \
 				srcs/parser/parser_utils.c \
 				srcs/parser/suround_diff.c \
 				srcs/parser/main_parser.c \
@@ -20,6 +19,7 @@ SRC         =	srcs/main/main.c \
 				srcs/parser/my_ft_split.c \
 				srcs/parser/check_infos.c \
 				srcs/raycasting/raycasting.c \
+				srcs/utils/game_utils.c \
 				srcs/utils/utils.c \
 				srcs/utils/move_utils.c \
 				srcs/utils/init_utils.c \
@@ -30,7 +30,6 @@ BNS			= 	bonus/main/main_bonus.c \
 			    bonus/main/init_bonus.c \
 				bonus/main/init_img_bonus.c \
 			    bonus/parser/parser_bonus.c \
-			    bonus/parser/utils_bonus.c \
 			    bonus/parser/parser_utils_bonus.c \
 			    bonus/parser/suround_diff_bonus.c \
 			    bonus/parser/main_parser_bonus.c \
@@ -45,7 +44,8 @@ BNS			= 	bonus/main/main_bonus.c \
 			    bonus/free/free_game_bonus.c \
 				bonus/utils/init_utils_bonus.c \
 				bonus/utils/move_utils_bonus.c \
-				bonus/utils/utils_bonus.c \
+				bonus/utils/game_utils_bonus.c \
+			    bonus/utils/utils_bonus.c \
 				bonus/minimap/minimap_bonus.c
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)
