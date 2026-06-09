@@ -27,21 +27,21 @@ void		flood_fill(char **map, int p_y, int p_x);
 int			content_error_check(int fd, char *str2, int *error);
 int			add_tail(char **str0, char **str1, char **str2);
 int			main_parser(int argc, char **argv, t_game *g);
-char        *skip_spaces(char *str);
-int         is_ok_format(char *str);
-int         has_hole(char *str);
-int         assign_color(int flag, t_map *tm, int *token, char *tmp);
-int         is_valid_middle_line(char *str, int *ind_P, int *error);
-int         check_enclosure(int *error, char **map, int i);
-int         check_last_spaces(char **map, int i, int *error);
-int         check_begin(char *str, int *i, int *error);
-int         check_square(char *str, int *i, int *error, int *ind_P);
-int         check_line_end(char *str, int *i, int *error);
-void        update_status(char *str, int i, int *error);
+char		*skip_spaces(char *str);
+int			is_ok_format(char *str);
+int			has_hole(char *str);
+int			assign_color(int flag, t_map *tm, int *token, char *tmp);
+int			is_valid_middle_line(char *str, int *ind_P, int *error);
+int			check_enclosure(int *error, char **map, int i);
+int			check_last_spaces(char **map, int i, int *error);
+int			check_begin(char *str, int *i, int *error);
+int			check_square(char *str, int *i, int *error, int *ind_P);
+int			check_line_end(char *str, int *i, int *error);
+void		update_status(char *str, int i, int *error);
 
 /* ---------- init ---------- */
 void		init_player(t_game *g);
-int		    init_windows_mlx(t_game *g);
+int			init_windows_mlx(t_game *g);
 void		init_events(t_game *g);
 void		init_game(void *ptr);
 int			init_img(t_game *g);
@@ -56,8 +56,8 @@ void		key_up(int key, void *param);
 void		mouse_up(int key, void *param);
 void		mouse_down(int key, void *param);
 void		timer(t_game *g);
-t_color     parse_rgb(char *str);
-void	    draw_col(t_game *g, t_ray *r, int x, int hit);
+t_color		parse_rgb(char *str);
+void		draw_col(t_game *g, t_ray *r, int x, int hit);
 
 /* ---------- raycasting ---------- */
 int			is_wall(t_game *g, int wx, int wy);
@@ -80,8 +80,8 @@ void		right(t_game *g, double rs);
 void		update_move(t_game *g, double ms, double rs);
 
 /* ---------- animation ---------- */
-void        display_hands(t_game *g);
-int	        is_door(t_game *g, int i, int j);
+void		display_hands(t_game *g);
+int			is_door(t_game *g, int i, int j);
 
 /* ---------- init_utils ---------- */
 void		init_ray(t_game *g, t_ray *r, int x);
