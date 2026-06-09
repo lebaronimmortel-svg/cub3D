@@ -104,3 +104,15 @@ char	**create_map(char *filename, int *error, t_map *tm)
 	free_map(map);
 	return (NULL);
 }
+
+char	*skip_spaces(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	return (&str[i]);
+}

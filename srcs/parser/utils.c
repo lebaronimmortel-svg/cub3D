@@ -63,3 +63,15 @@ int	my_memlen(char **map)
 		i++;
 	return (i);
 }
+
+char	*skip_spaces(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	return (&str[i]);
+}

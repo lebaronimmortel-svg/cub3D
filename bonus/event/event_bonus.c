@@ -12,20 +12,22 @@
 
 #include "../../header_bonus/header_bonus.h"
 
-void	mouse_up(int key, void *param)
+void	draw_col(t_game *g, t_ray *r, int x, int hit)
 {
-	t_game	*g;
+	int	py;
+	int	tex_y;
 
-	g = (t_game *)param;
-	if (key == 1)
-		g->keys[6] = 0;
-}
-
-void	mouse_down(int key, void *param)
-{
-	t_game	*g;
-
-	g = (t_game *)param;
-	if (key == 1)
-		g->keys[6] = 1;
+	py = r->ds;
+	while (py <= r->de)
+	{
+		tex_y = (int)r->tex_pos;
+		if (tex_y < 0)
+			tex_y = 0;
+		else if (tex_y >= g->map.tex_h)
+			tex_y = g->map.tex_h - 1;
+		r->tex_pos += r->tex_step;
+		mlx_set_image_pixel(g->mlx, g->img, x, py,
+			get_tex_color(g, r, tex_y, hit));
+		py++;
+	}
 }

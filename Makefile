@@ -14,11 +14,14 @@ SRC         =	srcs/main/main.c \
 				srcs/parser/parser.c \
 				srcs/parser/utils.c \
 				srcs/parser/parser_utils.c \
+				srcs/parser/parse_line.c \
+				srcs/parser/parse_line_utils.c \
 				srcs/parser/suround_diff.c \
 				srcs/parser/main_parser.c \
 				srcs/parser/create_map.c \
 				srcs/parser/my_ft_split.c \
 				srcs/parser/check_infos.c \
+				srcs/parser/check_infos_utils.c \
 				srcs/raycasting/raycasting.c \
 				srcs/utils/utils.c \
 				srcs/utils/move_utils.c \
@@ -30,6 +33,8 @@ BNS			= 	bonus/main/main_bonus.c \
 			    bonus/main/init_bonus.c \
 				bonus/main/init_img_bonus.c \
 			    bonus/parser/parser_bonus.c \
+				bonus/parser/parse_line_bonus.c \
+				bonus/parser/parse_line_utils_bonus.c \
 			    bonus/parser/utils_bonus.c \
 			    bonus/parser/parser_utils_bonus.c \
 			    bonus/parser/suround_diff_bonus.c \
@@ -37,8 +42,10 @@ BNS			= 	bonus/main/main_bonus.c \
 			    bonus/parser/create_map_bonus.c \
 			    bonus/parser/my_ft_split_bonus.c \
 			    bonus/parser/check_infos_bonus.c \
+				bonus/parser/check_infos_utils_bonus.c \
 			    bonus/raycasting/raycasting_bonus.c \
 				bonus/raycasting/raycasting_utils_bonus.c \
+				bonus/event/event_bonus.c \
 			    bonus/event/mouse_event_bonus.c \
 			    bonus/event/keyboard_event_bonus.c \
 				bonus/event/animation_bonus.c \
