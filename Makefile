@@ -13,6 +13,7 @@ SRC         =	srcs/main/main.c \
 				srcs/main/init.c \
 				srcs/parser/parser.c \
 				srcs/parser/parser_utils.c \
+				srcs/parser/parser_utils_bis.c \
 				srcs/parser/suround_diff.c \
 				srcs/parser/main_parser.c \
 				srcs/parser/create_map.c \

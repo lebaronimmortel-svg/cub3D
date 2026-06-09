@@ -25,6 +25,10 @@ char		**create_map(char *filename, int *error, t_map *tm);
 int			content_error_check(int fd, char *str2, int *error);
 int			add_tail(char **str0, char **str1, char **str2);
 int			main_parser(int argc, char **argv, t_game *g);
+int			is_valid_middle_line(char *str, int *ind_P, int *error);
+int			is_valid_square(char c);
+int			check_adjacent_lines(char **map, int i, int *error);
+int			validate_line(char **map, int i, int *cnt, int *error);
 
 /* ---------- init ---------- */
 void		init_player(t_game *g);

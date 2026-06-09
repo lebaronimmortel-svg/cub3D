@@ -34,7 +34,7 @@ static int	is_valid_square(char c)
 	return (0);
 }
 
-static int	is_valid_middle_line(char *str, int *ind_P, int *error)
+int	is_valid_middle_line(char *str, int *ind_P, int *error)
 {
 	int	i;
 
