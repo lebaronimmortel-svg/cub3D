@@ -26,6 +26,20 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
+static int	check_line(char *str, int i, int *error, char *pre_str)
+{
+	if (i > 0 && (str[i - 1] == ' '))
+	{
+		if (my_space_strlen(str) > my_space_strlen(pre_str)
+			|| pre_str[i] == ' ')
+		{
+			*error = 4;
+			return (0);
+		}
+	}
+	return (1);
+}
+
 int	is_valid_border_line(char *str, int *error, char *pre_str)
 {
 	int	i;
@@ -44,17 +58,8 @@ int	is_valid_border_line(char *str, int *error, char *pre_str)
 			return (0);
 		}
 		if (str[i] == '1' && is_space(&str[i + 1]))
-		{
-			if (i > 0 && (str[i - 1] == ' '))
-			{
-				if (my_space_strlen(str) > my_space_strlen(pre_str)
-					|| pre_str[i] == ' ')
-				{
-					*error = 4;
-					return (0);
-				}
-			}
-		}
+			if (!check_line(str, i, error, pre_str))
+				return (0);
 		i++;
 	}
 	return (1);
