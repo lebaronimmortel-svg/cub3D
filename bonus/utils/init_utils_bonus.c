@@ -40,19 +40,45 @@ static int	is_open_door(t_game *g, int i, int j)
 	return (0);
 }
 
+static int	faces_a_door(t_game *g, t_ray *ray)
+{
+	double	dir_x;
+	double	dir_y;
+	double	to_bloc_x;
+	double	to_bloc_y;
+
+	dir_x = g->player.dir_x;
+	dir_y = g->player.dir_y;
+	to_bloc_x = (ray->map_x + 0.5) - g->player.pos_x;
+	to_bloc_y = (ray->map_y + 0.5) - g->player.pos_y;
+	if (sqrt(to_bloc_x * to_bloc_x + to_bloc_y * to_bloc_y) == 0)
+		return (0);
+	to_bloc_x /= sqrt(to_bloc_x * to_bloc_x + to_bloc_y * to_bloc_y);
+	to_bloc_y /= sqrt(to_bloc_x * to_bloc_x + to_bloc_y * to_bloc_y);
+	if ((dir_x * to_bloc_x) + (dir_y * to_bloc_y) > 0.97)
+		return (1);
+	return (0);
+}
+
 static int	update_door_state(int hit, t_game *g, t_ray *r)
 {
 	if (hit == 2 && g->keys[6] && g->player.is_shooting == 0)
 	{
-		g->player.is_shooting = 1;
-		g->map.grid_map[r->map_y][r->map_x] = 'A';
-		hit = 3;
+		if (faces_a_door(g, r))
+		{
+			g->player.is_shooting = 1;
+			g->map.grid_map[r->map_y][r->map_x] = 'A';
+			hit = 3;
+		}
 	}
 	else if (hit == 3 && g->keys[6] && g->player.is_shooting == 0)
 	{
-		g->player.is_shooting = 1;
-		g->map.grid_map[r->map_y][r->map_x] = 'D';
-		hit = 2;
+		if (faces_a_door(g, r))
+		{
+			g->player.is_shooting = 1;
+			g->map.grid_map[r->map_y][r->map_x] = 'D';
+			hit = 2;
+		}
 	}
 	return (hit);
 }
