@@ -30,6 +30,8 @@ static void	put_error_msg(int error)
 		ft_putstr_fd("INVALID INFO SYNTAX\n", 1);
 	else if (error == 8)
 		ft_putstr_fd("UNABLE TO OPEN FILE\n", 1);
+	else if (error == 9)
+		ft_putstr_fd("MEMORY ALLOCATION FAILED\n", 1);
 }
 
 static void	tex_init(t_game *g)
