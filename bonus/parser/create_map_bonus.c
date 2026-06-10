@@ -64,16 +64,12 @@ static char	**trim_map_header(char **map, int start)
 		new_len++;
 	new_map = malloc(sizeof(char *) * (new_len + 1));
 	if (!new_map)
-	{
 		free_map(map);
+	if (!new_map)
 		return (NULL);
-	}
 	i = 0;
 	while (i < start)
-	{
-		free(map[i]);
-		i++;
-	}
+		free(map[i++]);
 	i = 0;
 	while (i < new_len)
 	{
