@@ -71,6 +71,7 @@ void		draw_scene(t_game *g);
 void		free_game(t_game *g);
 void		end_game(t_game *g, int flag);
 void		close_img(int one, int two, int three, int four);
+void		free_map_info(t_game *g);
 
 /* ---------- move_utils ---------- */
 void		forward(t_game *g, double ms);

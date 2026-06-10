@@ -58,6 +58,7 @@ void		draw_scene(t_game *g);
 /* ---------- free ---------- */
 void		end_game(t_game *g, int flag);
 void		close_img(int one, int two, int three, int four);
+void		free_map_info(t_game *g);
 
 /* ---------- utils ---------- */
 void		set_player_dir_vec(t_game *g, char c);

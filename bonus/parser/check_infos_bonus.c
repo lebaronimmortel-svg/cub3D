@@ -23,6 +23,11 @@ static int	assign_tex(int flag, t_map *tm, int *token, char *tmp)
 	if (result[ft_strlen(result) - 1] == 9)
 		return (free(result), 0);
 	path = ft_strjoin("", skip_spaces(result));
+	if (!path)
+	{
+		free(result);
+		return (0);
+	}
 	if (flag == 2)
 		tm->no = path;
 	else if (flag == 3)
@@ -100,7 +105,10 @@ int	check_infos(char **map, int *i, t_map *tm)
 			continue ;
 		}
 		tmp = ft_strtrim(map[*i], " ");
-		status = assign_info(tm, i, token, tmp);
+		if (!tmp)
+			status = 0;
+		else
+			status = assign_info(tm, i, token, tmp);
 		free(tmp);
 		if (status == 0)
 			break ;

@@ -12,6 +12,22 @@
 
 #include "../../header_bonus/header_bonus.h"
 
+void	free_map_info(t_game *g)
+{
+	if (g->map.no)
+		free(g->map.no);
+	if (g->map.so)
+		free(g->map.so);
+	if (g->map.we)
+		free(g->map.we);
+	if (g->map.ea)
+		free(g->map.ea);
+	g->map.no = NULL;
+	g->map.so = NULL;
+	g->map.we = NULL;
+	g->map.ea = NULL;
+}
+
 static void	destroy_img(t_game *g)
 {
 	int	i;
@@ -57,10 +73,18 @@ void	end_game(t_game *g, int flag)
 void	free_game(t_game *g)
 {
 	free_map(g->map.grid_map);
-	free(g->map.no);
-	free(g->map.so);
-	free(g->map.we);
-	free(g->map.ea);
+	if (g->map.no)
+		free(g->map.no);
+	if (g->map.so)
+		free(g->map.so);
+	if (g->map.we)
+		free(g->map.we);
+	if (g->map.ea)
+		free(g->map.ea);
+	g->map.no = NULL;
+	g->map.so = NULL;
+	g->map.we = NULL;
+	g->map.ea = NULL;
 }
 
 void	close_img(int one, int two, int three, int four)

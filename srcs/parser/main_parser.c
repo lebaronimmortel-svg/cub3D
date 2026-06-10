@@ -70,6 +70,7 @@ int	main_parser(int argc, char **argv, t_game *g)
 	{
 		ft_putstr_fd("Error :\n", 1);
 		put_error_msg(error);
+		free_map_info(g);
 		return (0);
 	}
 	return (1);

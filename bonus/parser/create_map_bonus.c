@@ -59,18 +59,21 @@ static char	**trim_map_header(char **map, int start)
 	int		new_len;
 	char	**new_map;
 
+	new_len = 0;
+	while (map[start + new_len])
+		new_len++;
+	new_map = malloc(sizeof(char *) * (new_len + 1));
+	if (!new_map)
+	{
+		free_map(map);
+		return (NULL);
+	}
 	i = 0;
 	while (i < start)
 	{
 		free(map[i]);
 		i++;
 	}
-	new_len = 0;
-	while (map[start + new_len])
-		new_len++;
-	new_map = malloc(sizeof(char *) * (new_len + 1));
-	if (!new_map)
-		return (NULL);
 	i = 0;
 	while (i < new_len)
 	{
@@ -98,7 +101,10 @@ char	**create_map(char *filename, int *error, t_map *tm)
 	}
 	map = trim_map_header(map, start);
 	if (!map)
+	{
+		*error = 9;
 		return (NULL);
+	}
 	if (*error == 7)
 		return (map);
 	free_map(map);
