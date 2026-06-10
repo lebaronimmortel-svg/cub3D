@@ -16,20 +16,22 @@ static void	put_error_msg(int error)
 {
 	if (error == 0)
 		ft_putstr_fd("IMPLICIT START POSITION\n", 1);
-	if (error == 1)
+	else if (error == 1)
 		ft_putstr_fd("BAD PERMISSIONS\n", 1);
-	if (error == 2)
+	else if (error == 2)
 		ft_putstr_fd("MAP FILE REQUIRED\n", 1);
-	if (error == 3)
+	else if (error == 3)
 		ft_putstr_fd("INVALID FILE NAME\n", 1);
-	if (error == 4)
+	else if (error == 4)
 		ft_putstr_fd("UNEXPECTED TOKEN\n", 1);
-	if (error == 5)
+	else if (error == 5)
 		ft_putstr_fd("UNCLOSED MAP\n", 1);
-	if (error == 6)
+	else if (error == 6)
 		ft_putstr_fd("INVALID INFO SYNTAX\n", 1);
-	if (error == 8)
+	else if (error == 8)
 		ft_putstr_fd("UNABLE TO OPEN FILE\n", 1);
+	else if (error == 9)
+		ft_putstr_fd("MEMORY ALLOCATION FAILED\n", 1);
 }
 
 static void	struct_init(t_game *g)
