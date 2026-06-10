@@ -1,4 +1,5 @@
 NAME        = cub3D
+NAME_BNS	= cub3D_bonus
 
 # --- Directories ---
 SRC_DIR     = srcs
@@ -71,8 +72,10 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(FLAGS) $^ -lSDL2 -lXext -lX11 -lm -o $(NAME)
 	
-bonus: $(OBJ_BNS) $(LIBFT) $(MLX)
-	$(CC) $(FLAGS) $^ -lSDL2 -lXext -lX11 -lm -o $(NAME)
+bonus: $(NAME_BNS)
+
+$(NAME_BNS): $(OBJ_BNS) $(LIBFT) $(MLX)
+	$(CC) $(FLAGS) $^ -lSDL2 -lXext -lX11 -lm -o $@
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
@@ -98,6 +101,7 @@ fclean: clean
 	make fclean -C $(LIBFT_DIR)
 	$(RM) -f $(MLX)
 	$(RM) $(NAME)
+	$(RM) $(NAME_BNS)
 
 re: fclean all
 
