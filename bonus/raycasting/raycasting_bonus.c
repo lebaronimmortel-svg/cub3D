@@ -78,7 +78,7 @@ void	cast_ray(t_game *g, int x)
 
 	init_ray(g, &r, x);
 	init_dda(g, &r);
-	hit = dda_loop(g, &r);
+	hit = dda_loop(g, &r, x);
 	calc_slice(g, &r);
 	calc_tex_x(g, &r);
 	draw_col(g, &r, x, hit);

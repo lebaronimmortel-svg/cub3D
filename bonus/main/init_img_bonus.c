@@ -94,3 +94,19 @@ int	init_img(t_game *g)
 		return (0);
 	return (1);
 }
+
+void	update_ray(int flag, t_ray *r)
+{
+	if (!flag)
+	{
+		r->sdist_x += r->ddist_x;
+		r->map_x += r->step_x;
+		r->side = 0;
+	}
+	else
+	{
+		r->sdist_y += r->ddist_y;
+		r->map_y += r->step_y;
+		r->side = 1;
+	}
+}

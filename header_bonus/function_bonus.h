@@ -61,7 +61,7 @@ int			init_img(t_game *g);
 /* ---------- init_utils ---------- */
 void		init_ray(t_game *g, t_ray *r, int x);
 void		init_dda(t_game *g, t_ray *r);
-int			dda_loop(t_game *g, t_ray *r);
+int			dda_loop(t_game *g, t_ray *r, int x);
 mlx_color	get_tex_color(t_game *g, t_ray *r, int tex_y, int hit);
 void		draw_col(t_game *g, t_ray *r, int x, int hit);
 
@@ -84,6 +84,7 @@ void		draw_floor_ceiling(t_game *g);
 int			pick_tex(int side, int step_x, int step_y);
 void		cast_ray(t_game *g, int x);
 void		draw_scene(t_game *g);
+void		update_ray(int flag, t_ray *r);
 
 /* ---------- free ---------- */
 void		free_game(t_game *g);

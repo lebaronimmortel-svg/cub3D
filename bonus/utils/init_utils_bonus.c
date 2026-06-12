@@ -83,7 +83,7 @@ static int	update_door_state(int hit, t_game *g, t_ray *r)
 	return (hit);
 }
 
-int	dda_loop(t_game *g, t_ray *r)
+int	dda_loop(t_game *g, t_ray *r, int x)
 {
 	int	hit;
 
@@ -91,17 +91,9 @@ int	dda_loop(t_game *g, t_ray *r)
 	while (!hit)
 	{
 		if (r->sdist_x < r->sdist_y)
-		{
-			r->sdist_x += r->ddist_x;
-			r->map_x += r->step_x;
-			r->side = 0;
-		}
+			update_ray(0, r);
 		else
-		{
-			r->sdist_y += r->ddist_y;
-			r->map_y += r->step_y;
-			r->side = 1;
-		}
+			update_ray(1, r);
 		if (is_wall(g, r->map_x, r->map_y))
 			hit = 1;
 		else if (is_door(g, r->map_x, r->map_y))
@@ -109,5 +101,7 @@ int	dda_loop(t_game *g, t_ray *r)
 		else if (is_open_door(g, r->map_x, r->map_y))
 			hit = 3;
 	}
-	return (update_door_state(hit, g, r));
+	if (x == g->info.width / 2)
+		return (update_door_state(hit, g, r));
+	return (hit);
 }
