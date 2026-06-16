@@ -55,10 +55,13 @@ static void	draw_cells(t_game *g)
 		x = 0;
 		while (g->map.grid_map[y][x])
 		{
-			fill_cell(g,
-				10 + x * 5,
-				10 + y * 5,
-				cell_color(g->map.grid_map[y][x]));
+			if (g->map.grid_map[y][x] != 32)
+			{
+				fill_cell(g,
+					10 + x * 5,
+					10 + y * 5,
+					cell_color(g->map.grid_map[y][x]));
+			}
 			x++;
 		}
 		y++;
