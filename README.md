@@ -27,10 +27,10 @@ To compile and run the project, the standard `Makefile` rules apply:
 * Run `make` or `make all` to compile the mandatory executable.
 * Run `make bonus` to compile the bonus executable `cub3D_bonus`.
 * Once compiled, launch the program by passing a `.cub` scene file as argument:
-  ```
-  ./cub3D path/to/scene.cub
-  ./cub3D_bonus path/to/scene.cub
-  ```
+```
+./cub3D path/to/scene.cub
+./cub3D_bonus path/to/scene.cub
+```
 * Other available `Makefile` rules include `clean`, `fclean`, and `re`.
 
 > **Note:** This project uses **MacroLibX** as its graphical library (a modern re-implementation of MiniLibX).
