@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   my_ft_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexfuen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alexfuen <alexfuen@student.42angouleme.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 10:38:27 by alexfuen          #+#    #+#             */
 /*   Updated: 2025/10/16 10:38:29 by alexfuen         ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   create_map_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexfuen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alexfuen <alexfuen@student.42angouleme.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 08:45:03 by alexfuen          #+#    #+#             */
 /*   Updated: 2026/06/05 07:28:39 by lukrodri         ###   ########.fr       */
