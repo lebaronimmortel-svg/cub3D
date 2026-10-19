@@ -24,7 +24,7 @@ Memory is properly managed throughout; all heap-allocated resources (map grid, t
 
 ## Instructions
 To compile and run the project, the standard `Makefile` rules apply:
-* Run `make` or `make all` to compile the mandatory executable `cub3D` using `cc` with `-Wall`, `-Wextra`, and `-Werror` flags.
+* Run `make` or `make all` to compile the mandatory executable.
 * Run `make bonus` to compile the bonus executable `cub3D_bonus`.
 * Once compiled, launch the program by passing a `.cub` scene file as argument:
   ```
@@ -66,9 +66,4 @@ Resources for this project were:
 - https://lodev.org/cgtutor/raycasting.html — the main reference for understanding and implementing the DDA ray-casting algorithm
 - https://man7.org/linux/man-pages/ — Linux man pages for system calls
 - https://github.com/seekrs/MacroLibX — MacroLibX documentation and source
-- https://stackoverflow.com/
 
-We also used AI as an improved internet navigator to find out some technical information, such as:
-- Understanding edge cases in the DDA algorithm (perpendicular wall distance, texture coordinate calculation)
-- Debugging the map parser's enclosure-checking logic
-- Finding the correct SDL2 linker flags for MacroLibX
