@@ -20,9 +20,13 @@ static int	key_to_index(int key)
 	}
 	if (key == 22 || key == 81)
 		return (1);
-	if (key == 4 || key == 80)
+	if (key == 4)
+		return (4);
+	if (key == 80)
 		return (2);
-	if (key == 7 || key == 79)
+	if (key == 7)
+		return (5);
+	if (key == 79)
 		return (3);
 	return (-1);
 }

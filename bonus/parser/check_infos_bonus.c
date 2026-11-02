@@ -28,14 +28,7 @@ static int	assign_tex(int flag, t_map *tm, int *token, char *tmp)
 		free(result);
 		return (0);
 	}
-	if (flag == 2)
-		tm->no = path;
-	else if (flag == 3)
-		tm->so = path;
-	else if (flag == 4)
-		tm->we = path;
-	else if (flag == 5)
-		tm->ea = path;
+	set_texture(tm, path, flag);
 	token[flag]++;
 	free(result);
 	return (1);

@@ -48,7 +48,6 @@ int	init_windows_mlx(t_game *g)
 	g->info.height = 480;
 	g->player.is_shooting = 0;
 	g->timer = 0;
-	g->keys[6] = 0;
 	g->win = mlx_new_window(g->mlx, &g->info);
 	if (!g->win)
 		return (0);

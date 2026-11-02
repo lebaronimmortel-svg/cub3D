@@ -12,6 +12,30 @@
 
 #include "../../header_bonus/header_bonus.h"
 
+void	set_texture(t_map *tm, char *path, int flag)
+{
+	if (flag == 2)
+	{
+		free(tm->no);
+		tm->no = path;
+	}
+	else if (flag == 3)
+	{
+		free(tm->so);
+		tm->so = path;
+	}
+	else if (flag == 4)
+	{
+		free(tm->we);
+		tm->we = path;
+	}
+	else if (flag == 5)
+	{
+		free(tm->ea);
+		tm->ea = path;
+	}
+}
+
 static void	put_error_msg(int error)
 {
 	if (error == 0)
@@ -69,7 +93,7 @@ int	main_parser(int argc, char **argv, t_game *g)
 
 	tex_init(g);
 	i = 0;
-	while (i < 6)
+	while (i < 7)
 		g->keys[i++] = 0;
 	error = 7;
 	if (argc != 2)

@@ -39,6 +39,7 @@ int			has_hole(char *str);
 int			check_infos(char **map, int *i, t_map *tm);
 int			is_ok_format(char *str);
 int			assign_color(int flag, t_map *tm, int *token, char *tmp);
+void		set_texture(t_map *tm, char *path, int flag);
 
 /* ---------- utils ---------- */
 char		**my_ft_split(char const *s, char c);
@@ -94,3 +95,5 @@ void		backward(t_game *g, double ms);
 void		left(t_game *g, double rs);
 void		right(t_game *g, double rs);
 void		update_move(t_game *g, double ms, double rs);
+void		straf_left(t_game *g, double ms);
+void		straf_right(t_game *g, double ms);

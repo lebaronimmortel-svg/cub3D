@@ -7,7 +7,9 @@ OBJ_DIR_BNS = objs_bonus
 OBJ_DIR     = objs
 LIBFT_DIR   = libft
 HEADER_DIR  = header
-MLX 		= ./MacroLibX/libmlx.so
+MLX_DIR     = ./MacroLibX
+MLX_REPO    = https://github.com/seekrs/MacroLibX.git
+MLX 		= $(MLX_DIR)/libmlx.so
 
 # --- Files ---
 SRC         =	srcs/main/main.c \
@@ -28,7 +30,8 @@ SRC         =	srcs/main/main.c \
 				srcs/utils/move_utils.c \
 				srcs/utils/init_utils.c \
 				srcs/event/event.c \
-				srcs/free/free_game.c
+				srcs/free/free_game.c \
+				srcs/utils/straf.c
 
 BNS			= 	bonus/main/main_bonus.c \
 			    bonus/main/init_bonus.c \
@@ -54,7 +57,8 @@ BNS			= 	bonus/main/main_bonus.c \
 				bonus/utils/init_utils_bonus.c \
 				bonus/utils/move_utils_bonus.c \
 				bonus/utils/utils_bonus.c \
-				bonus/minimap/minimap_bonus.c
+				bonus/minimap/minimap_bonus.c \
+				bonus/utils/straf_bonus.c
 
 OBJ         = $(SRC:%.c=$(OBJ_DIR)/%.o)
 OBJ_BNS     = $(BNS:%.c=$(OBJ_DIR_BNS)/%.o)
@@ -77,22 +81,25 @@ bonus: $(NAME_BNS)
 $(NAME_BNS): $(OBJ_BNS) $(LIBFT) $(MLX)
 	$(CC) $(FLAGS) $^ -lSDL2 -lXext -lX11 -lm -o $@
 
-$(OBJ_DIR)/%.o: %.c $(HEADERS)
+$(OBJ_DIR)/%.o: %.c $(HEADERS) | $(MLX_DIR)
 	@mkdir -p $(dir $@)
-	$(CC) $(FLAGS) -I $(HEADER_DIR) -I $(LIBFT_DIR) -c $< -o $@
+	$(CC) $(FLAGS) -I $(HEADER_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR)/includes -c $< -o $@
 	
-$(OBJ_DIR_BNS)/%.o: %.c $(HEADERS_BNS)
+$(OBJ_DIR_BNS)/%.o: %.c $(HEADERS_BNS) | $(MLX_DIR)
 	@mkdir -p $(dir $@)
-	$(CC) $(FLAGS) -I $(HEADER_DIR_BNS) -I $(LIBFT_DIR) -c $< -o $@
+	$(CC) $(FLAGS) -I $(HEADER_DIR_BNS) -I $(LIBFT_DIR) -I $(MLX_DIR)/includes -c $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-$(MLX):
-	make -C ./MacroLibX -s -j --no-print-directory
+$(MLX_DIR):
+	git clone $(MLX_REPO) $(MLX_DIR)
+
+$(MLX): $(MLX_DIR)
+	make -C $(MLX_DIR) -s -j --no-print-directory
 
 clean:
-	make clean -C ./MacroLibX
+	@if [ -d "$(MLX_DIR)" ]; then make clean -C $(MLX_DIR); fi
 	make clean -C $(LIBFT_DIR)
 	$(RM) $(OBJ_DIR)
 	$(RM) $(OBJ_DIR_BNS)
@@ -102,7 +109,8 @@ fclean: clean
 	$(RM) -f $(MLX)
 	$(RM) $(NAME)
 	$(RM) $(NAME_BNS)
+	$(RM) $(MLX_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

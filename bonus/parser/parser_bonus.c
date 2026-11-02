@@ -41,19 +41,10 @@ static int	skip_first_spaces(char **map, int *i, t_map *tm, int *error)
 
 int	is_valid_line(int *error, char **map, int i, int *cnt)
 {
-	if (i == 0)
-	{
-		if (!is_valid_border_line(map[i], error, map[i + 1]))
-			return (0);
-	}
-	else
-	{
-		if (!is_valid_middle_line(map[i], cnt, error))
-			return (0);
-	}
-	if (i != 0)
-		if (!check_enclosure(error, map, i))
-			return (0);
+	if (!is_valid_middle_line(map[i], cnt, error))
+		return (0);
+	if (!check_enclosure(error, map, i))
+		return (0);
 	return (1);
 }
 
@@ -70,6 +61,9 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 	if (!skip_first_spaces(map, &i, tm, error))
 		return (0);
 	*start = i;
+	if (!is_valid_border_line(map[i], error, map[i + 1]))
+		return (0);
+	i++;
 	flag = 0;
 	while (map[i] && !is_space(map[i]))
 	{
@@ -77,9 +71,8 @@ int	item_count(char **map, int *error, int *start, t_map *tm)
 			return (0);
 		i++;
 	}
-	if (i != 0 && !is_valid_border_line(map[i - 1], error, map[i - 1]))
-		return (0);
-	if (!check_last_spaces(map, i, error))
+	if ((i != 0 && !is_valid_border_line(map[i - 1], error, map[i - 1]))
+		|| !check_last_spaces(map, i, error))
 		return (0);
 	return (check_count(cnt, error));
 }

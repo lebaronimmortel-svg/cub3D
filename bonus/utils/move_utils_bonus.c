@@ -81,4 +81,8 @@ void	update_move(t_game *g, double ms, double rs)
 		left(g, rs);
 	if (g->keys[3])
 		right(g, rs);
+	if (g->keys[4])
+		straf_right(g, ms);
+	if (g->keys[5])
+		straf_left(g, ms);
 }
